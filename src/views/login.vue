@@ -72,7 +72,7 @@
 }
 
 a {
-  color: ##0C2A92;
+  color: #0C2A92;
   text-decoration: none;
 }
 p > a {

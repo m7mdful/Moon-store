@@ -15,18 +15,18 @@
 			>
 				<img src="../assets/Menu.svg" alt="Menu" />
 				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="#">Home</a></li>
+					<li><router-link class="dropdown-item" to="/">Home</router-link></li>
 					<li>
-						<a class="dropdown-item" href="#">Shop</a>
+						<router-link class="dropdown-item" to="/product">Shop</router-link>
 					</li>
 					<li>
-						<a class="dropdown-item" href="#"
-							>About</a
+						<router-link class="dropdown-item" to="/about"
+							>About</router-link
 						>
 					</li>
           					<li>
-						<a class="dropdown-item" href="#"
-							>Contact</a
+						<router-link class="dropdown-item" to="/contact"
+							>Contact</router-link
 						>
 					</li>
           <li>
@@ -53,11 +53,11 @@
 			<div
 				class="d-none d-lg-flex justify-content-around align-items-center gap-5 primary-color fsize"
 			>
-				<a href="" class="text-decoration-none primary-color">Home</a>
-				<a href="" class="text-decoration-none primary-color">Shop</a>
-				<a href="" class="text-decoration-none primary-color">About</a>
-				<a href="" class="text-decoration-none primary-color"
-					>Contact</a
+				<router-link to="/" class="text-decoration-none primary-color">Home</router-link>
+				<router-link to="/product" class="text-decoration-none primary-color">Shop</router-link>
+				<router-link to="/about" class="text-decoration-none primary-color">About</router-link>
+				<router-link to="/contact" class="text-decoration-none primary-color"
+					>Contact</router-link
 				>
 			</div>
 

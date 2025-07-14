@@ -4,6 +4,7 @@ import homepage from '../views/homepage.vue'
 import contact from '../views/contact.vue'
 import product from '../views/product.vue'
 import login from '../views/login.vue'
+import shop from '../views/shop.vue'
 
 
 const routes = [
@@ -23,9 +24,9 @@ const routes = [
         component:contact
     },
     {
-        path:'/product',
-        name:'product',
-        component:product
+        path:'/shop',
+        name:'shop',
+        component:shop
     },
     {
         path:'/login',

@@ -19,7 +19,7 @@
 				<ul class="dropdown-menu">
 					<li><router-link class="dropdown-item" to="/">Home</router-link></li>
 					<li>
-						<router-link class="dropdown-item" to="/product"
+						<router-link class="dropdown-item" to="/shop"
 							>Shop</router-link
 						>
 					</li>
@@ -67,7 +67,7 @@
 					>Home</router-link
 				>
 				<router-link
-					to="/product"
+					to="/shop"
 					class="text-decoration-none primary-color"
 					>Shop</router-link
 				>

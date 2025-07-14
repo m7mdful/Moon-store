@@ -7,7 +7,7 @@
 			class="d-flex justify-content-between px-3 justify-content-lg-around"
 		>
 			<!-- Button dropdown for mobile -->
-			<div>
+			<div class="d-lg-none">
 				<button
 					class="d-lg-none"
 					data-bs-toggle="dropdown"

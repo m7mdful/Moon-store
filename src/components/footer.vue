@@ -4,6 +4,7 @@
 	<div
 		class="d-flex flex-column justify-content-center align-items-center bg-color"
 	>
+        <!-- logo and the button -->
 		<div class="d-flex flex-lg-row flex-column justify-content-center">
 			<div
 				class="d-flex flex-column justify-content-lg-start align-content-lg-start gap-2 py-4 p-lg-5  footerwidth"
@@ -25,6 +26,8 @@
 					/>
 				</button>
 			</div>
+
+            <!-- links -->
 			<div
 				class="d-flex flex-wrap justify-lg-content-center gap-5 p-lg-5 p-3 pcolor"
 				style="width: auto;"
@@ -61,6 +64,8 @@
 				</div>
 			</div>
 		</div>
+
+    <!-- copyright -->
 		<div>
             <div class="d-flex flex-wrap pcolor border-top px-5 py-2 ">
                 <p class="text-center fontsize">Copyright &copy; 2025 Moon| All Rights Reserved | <span><a href="" class="pcolor">Terms & Conditions</a></span> | <span><a href="" class="pcolor">Privacy Policy</a></span></p>

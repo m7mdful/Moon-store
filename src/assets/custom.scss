@@ -1,0 +1,139 @@
+//default variable overrides
+
+//color
+$primary: #3A3845;
+$secondary: #595667;
+$light:  #F7F6F5;
+
+// font fase
+$headings-font-family:'Garamond' ;
+$display-font-family: 'Poppins';
+
+
+// $h1-font-size:                $font-size-base * 2.5 !default;
+// $h2-font-size:                $font-size-base * 2 !default;
+// $h3-font-size:                $font-size-base * 1.75 !default;
+
+
+
+
+
+//import bootstrap scss
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+//letter spaceing
+$utilities: map-merge(
+  $utilities,
+  (
+    "letter-spacing": (
+      property: letter-spacing,
+      class: ls,
+      values: (
+        1: 1px,
+        2: 2px,
+        3: 3px,
+        wide: 0.1em,
+        tighter: -0.05em
+      )
+    )
+  )
+);
+
+//Typography
+
+//Inter font
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+//Garamond font
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+//Poppins font
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+// fixed font size
+
+.fs-1 {
+    font-size: 4rem !important; //40px
+}
+
+.fs-2 {
+    font-size: 3.6rem !important; //36px
+}
+
+.fs-3 {
+    font-size: 2.8rem !important; //28px
+}
+
+.fs-4 {
+    font-size: 1.8rem !important; //18px
+}
+
+.fs-5 {
+    font-size: 1.6rem !important; //16px
+}
+
+
+
+:root{
+    --bs-body-font-family: 'Inter'
+}
+
+.lead {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+    //font size
+
+// $font-size-root affects the value of `rem`, which is used for as well font sizes, paddings, and margins
+// $font-size-base affects the font size of the body text
+// $font-size-root:              null !default;
+// $font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
+// $font-size-sm:                $font-size-base * .875 !default;
+// $font-size-lg:                $font-size-base * 1.25 !default;
+
+//heding
+
+    //size
+    // $h1-font-size:                $font-size-base * 2.5 !default;
+    // $h2-font-size:                $font-size-base * 2 !default;
+    // $h3-font-size:                $font-size-base * 1.75 !default;
+    // $h4-font-size:                $font-size-base * 1.5 !default;
+    // $h5-font-size:                $font-size-base * 1.25 !default;
+    // $h6-font-size:                $font-size-base !default;
+
+    // headings-variables
+    // $headings-margin-bottom:      $spacer * .5 !default;
+    // $headings-font-family:        null !default;
+    // $headings-font-style:         null !default;
+    // $headings-font-weight:        500 !default;
+    // $headings-line-height:        1.2 !default;
+    // $headings-color:              inherit !default;
+
+// scss-docs-start display-headings
+
+        // $display-font-sizes: (
+        //     1: 5rem,
+        //     2: 4.5rem,
+        //     3: 4rem,
+        //     4: 3.5rem,
+        //     5: 3rem,
+        //     6: 2.5rem
+        //   ) !default;
+        
+        //   $display-font-family: null !default;
+        //   $display-font-style:  null !default;
+        //   $display-font-weight: 300 !default;
+        //   $display-line-height: $headings-line-height !default;
+
+//lead
+
+    // $lead-font-size:              $font-size-base * 1.25 !default;
+    // $lead-font-weight:            300 !default;
+
+//font weight
+
+    // $font-weight-lighter:         lighter !default;
+    // $font-weight-light:           300 !default;
+    // $font-weight-normal:          400 !default;
+    // $font-weight-medium:          500 !default;
+    // $font-weight-semibold:        600 !default;
+    // $font-weight-bold:            700 !default;
+    // $font-weight-bolder:          bolder !default;

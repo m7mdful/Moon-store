@@ -210,7 +210,7 @@
 					</button>
 				</div>
 				<div class="overflow-hidden">
-					<img src="../assets/img/Image.png" alt="" />
+					<img src="../assets/img/homepage4.png" alt="" />
 				</div>
 			</div>
 		</div>

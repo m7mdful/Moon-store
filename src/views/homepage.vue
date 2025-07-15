@@ -1,7 +1,10 @@
-<script setup></script>
+<script setup>
+	import productCard from '../components/productCard.vue'
+	import shop9 from '../assets/img/shop9.png'
+</script>
 
 <template>
-	<div class="d-flex flex-column gap-5">
+	<div class="d-flex flex-column gap-5 pb-5">
 		<div class="position-relative">
 			<img
 				class="d-lg-flex flex-lg-column w-100"
@@ -15,91 +18,265 @@
 				<p class="pcolor fw-light fs-5">
 					Handcrafted in Viet Nam since 1650
 				</p>
-				<h2 class="pcolor fs-2 fw-semibold">BAT TRANG <br />DINNER SET</h2>
-				<button class="bg-white border-0 p-1 px-5 shopbtn fw-semibold fs-5">
+				<h2 class="pcolor fs-2 fw-semibold">
+					BAT TRANG <br />DINNER SET
+				</h2>
+				<button
+					class="bg-white border-0 p-1 px-5 shopbtn fw-semibold fs-5"
+				>
 					SHOP NOW
 				</button>
 			</div>
 		</div>
 		<div>
 			<div
-				class="d-flex flex-wrap justify-content-center align-content-around p-5" style="gap:30px"
+				class="d-flex flex-wrap justify-content-center align-content-around p-5"
+				style="gap: 30px"
 			>
 				<div
 					class="d-flex flex-column justify-content-center align-items-center gap-1"
 				>
-					<img
-						src="../assets/img/Htableware.png"
-						alt=""
-						
-					/>
+					<img src="../assets/img/Htableware.png" alt="" />
 					<p class="fs-4 fw-semibold">TABLEWARE</p>
 				</div>
 				<div
 					class="d-flex flex-column justify-content-center align-items-center gap-1"
 				>
-					<img
-						src="../assets/img/Htableware.png"
-						alt=""
-						
-					/>
+					<img src="../assets/img/Htableware.png" alt="" />
 					<p class="fs-4 fw-semibold">TABLEWARE</p>
 				</div>
 				<div
 					class="d-flex flex-column justify-content-center align-items-center gap-1"
 				>
-					<img
-						src="../assets/img/Htableware.png"
-						alt=""
-						
-					/>
+					<img src="../assets/img/Htableware.png" alt="" />
 					<p class="fs-4 fw-semibold">TABLEWARE</p>
 				</div>
 				<div
 					class="d-flex flex-column justify-content-center align-items-center gap-1"
 				>
-					<img
-						src="../assets/img/Htableware.png"
-						alt=""
-						
-					/>
+					<img src="../assets/img/Htableware.png" alt="" />
 					<p class="fs-4 fw-semibold">TABLEWARE</p>
 				</div>
 			</div>
 		</div>
-        <div class="d-flex flex-lg-row flex-column justify-content-center align-content-center text-center">
-            <div class="d-flex flex-column align-items-center gap-2 resdiv bg-light" style="padding: 6rem;">
-                <h1 class="fs-3 fw-semibold">UP TO %40 OFF OUR  CHRISTMAS COLLECTION</h1>
-                <p class="fs-5">Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam neque ultrices.</p>
-                <button class="bg-transparent fs-6 fw-bold" style="border-bottom: 1.5px; border-style: solid; border-top: 0; border-left: 0; border-right: 0; padding-bottom: 0;">SHOP NOW</button>
-            </div>
-            <div class="overflow-hidden">
-                <img src="../assets/img/Image.png" alt="">
-            </div>
-        </div>
-        <div class="d-flex justify-content-center align-items-center">
-            <h1 class="fs-3 fw-bold">BEST SELLERS</h1>
-        </div>
-        <div class="d-flex flex-wrap justify-content-start align-content-start gap-3">
+		<div
+			class="d-flex flex-lg-row flex-column justify-content-center align-content-center text-center"
+		>
+			<div
+				class="d-flex flex-column align-items-center gap-2 resdiv bg-light"
+				style="padding: 6rem"
+			>
+				<h1 class="fs-3 fw-semibold">
+					UP TO %40 OFF OUR CHRISTMAS COLLECTION
+				</h1>
+				<p class="fs-5">
+					Lorem ipsum dolor sit amet consectetur adipiscing eli mattis
+					sit phasellus mollis sit aliquam sit nullam neque ultrices.
+				</p>
+				<button
+					class="bg-transparent fs-6 fw-bold"
+					style="
+						border-bottom: 1.5px;
+						border-style: solid;
+						border-top: 0;
+						border-left: 0;
+						border-right: 0;
+						padding-bottom: 0;
+					"
+				>
+					SHOP NOW
+				</button>
+			</div>
+			<div class="overflow-hidden">
+				<img src="../assets/img/Image.png" alt="" />
+			</div>
+		</div>
+		<div class="d-flex justify-content-center align-items-center">
+			<h1 class="fs-3 fw-bold">BEST SELLERS</h1>
+		</div>
+		<div
+			class="d-flex flex-wrap justify-content-center align-content-center"
+			style="gap: 30px; padding: 120px"
+		>
+			<productCard
+				:imgSrc="shop9"
+				title="Marin White Dinner Plate"
+				price="$30.50"
+				description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+			/>
+			<productCard
+				:imgSrc="shop9"
+				title="Marin White Dinner Plate"
+				price="$30.50"
+				description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+			/>
+			<productCard
+				:imgSrc="shop9"
+				title="Marin White Dinner Plate"
+				price="$30.50"
+				description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+			/>
+			<productCard
+				:imgSrc="shop9"
+				title="Marin White Dinner Plate"
+				price="$30.50"
+				description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+			/>
+			<productCard
+				:imgSrc="shop9"
+				title="Marin White Dinner Plate"
+				price="$30.50"
+				description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+			/>
+			<productCard
+				:imgSrc="shop9"
+				title="Marin White Dinner Plate"
+				price="$30.50"
+				description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+			/>
+			<productCard
+				:imgSrc="shop9"
+				title="Marin White Dinner Plate"
+				price="$30.50"
+				description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+			/>
+			<productCard
+				:imgSrc="shop9"
+				title="Marin White Dinner Plate"
+				price="$30.50"
+				description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+			/>
+		</div>
+		<div>
+			<div
+				class="d-flex flex-lg-row flex-column justify-content-center align-content-center text-center"
+			>
+				<div
+					class="d-flex flex-column align-items-center gap-2 resdiv bg-light"
+					style="padding: 6rem"
+				>
+					<h1 class="fs-3 fw-semibold">
+						MADE IN VIET NAM <br />SINCE 1450
+					</h1>
+					<p class="fs-5">
+						Lorem ipsum dolor sit amet consectetur adipiscing eli
+						mattis sit phasellus mollis sit aliquam sit nullam neque
+						ultrices.
+					</p>
+					<button
+						class="bg-transparent fs-6 fw-bold"
+						style="
+							border-bottom: 1.5px;
+							border-style: solid;
+							border-top: 0;
+							border-left: 0;
+							border-right: 0;
+							padding-bottom: 0;
+						"
+					>
+						LEARN MORE
+					</button>
+				</div>
+				<div class="overflow-hidden">
+					<img src="../assets/img/homepage2.png" alt="" />
+				</div>
+			</div>
 
-        </div>
+			<div
+				class="d-flex flex-lg-row flex-column justify-content-center align-content-center text-center"
+				dir="rtl"
+			>
+				<div
+					class="d-flex flex-column align-items-center gap-2 resdiv bg-light"
+					style="padding: 6rem"
+				>
+					<h1 class="fs-3 fw-semibold">OUR HISTORY</h1>
+					<p class="fs-5">
+						Lorem ipsum dolor sit amet consectetur adipiscing eli
+						mattis sit phasellus mollis sit aliquam sit
+					</p>
+					<button
+						class="bg-transparent fs-6 fw-bold"
+						style="
+							border-bottom: 1.5px;
+							border-style: solid;
+							border-top: 0;
+							border-left: 0;
+							border-right: 0;
+							padding-bottom: 0;
+						"
+					>
+						LEARN MORE
+					</button>
+				</div>
+				<div class="overflow-hidden">
+					<img src="../assets/img/Image.png" alt="" />
+				</div>
+			</div>
+		</div>
+		<div class="d-flex justify-content-center align-items-center">
+			<h1 class="fs-3 fw-bold">DISCOVER NEW ARRIVALS</h1>
+		</div>
+		<div
+			class="d-flex flex-wrap justify-content-center align-content-center"
+			style="gap: 30px; padding: 120px"
+		>
+						<productCard
+				:imgSrc="shop9"
+				title="Marin White Dinner Plate"
+				price="$30.50"
+				description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+			/>
+						<productCard
+				:imgSrc="shop9"
+				title="Marin White Dinner Plate"
+				price="$30.50"
+				description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+			/>
+						<productCard
+				:imgSrc="shop9"
+				title="Marin White Dinner Plate"
+				price="$30.50"
+				description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+			/>
+						<productCard
+				:imgSrc="shop9"
+				title="Marin White Dinner Plate"
+				price="$30.50"
+				description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+			/>
+		</div>
+		<div class="d-flex flex-column align-items-center text-center gap-5 sginin p-3">
+			<p class="fs-5">Sign up for emails</p>
+			<h2 class="fs-3 fw-bold">FOR NEWS, COLLECTIONS & MORE</h2>
+			<input class="bg-transparent text-center fs-5" placeholder="Enter your email" type="text" style="						border-bottom: 1.5px;
+						border-style: solid;
+						border-top: 0;
+						border-left: 0;
+						border-right: 0;
+						padding-bottom: 0;
+						width: 300px;
+						">
+			<button class="d-flex flex-row bg-transparent border-1 px-3 py-2 fs-5 fw-semibold">
+				SIGN UP
+			</button>
+		</div>
 	</div>
 </template>
 
 <style scoped>
-.resdiv{
-width: 555px;
-height: 348px;
-align-self: center;
-justify-self: center;
-@media screen and (max-width: 992px) {
-    width: auto;
-height: auto;
-align-self: center;
-justify-self: center;
+.resdiv {
+	width: 555px;
+	height: 348px;
+	align-self: center;
+	justify-self: center;
+	@media screen and (max-width: 992px) {
+		width: auto;
+		height: auto;
+		align-self: center;
+		justify-self: center;
+	}
 }
-}
-
 
 .positioning {
 	position: absolute;
@@ -122,6 +299,9 @@ justify-self: center;
 
 .shopbtn {
 	color: #826f66;
+}
+.sginin{
+	color:#3A3845;
 }
 .imagescaling {
 	width: 50px;

@@ -29,7 +29,7 @@
                 <div class="col-lg-5  bg-light">
                     <div class="d-flex justify-content-center align-items-center " style="height: 100%;">
                         <div class="mx-3 p-5">
-                                <h2 class="mb-4  text-primary fs-3  fw-bold ls-4">1910</h2>
+                                <h2 class="mb-4  text-primary fs-3  fw-bold ls-4 ">1910</h2>
                                 <p class="lead text-secondary">Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis sit aliquam sit nullam neque ultrices.</p>
                         </div>
                     </div>

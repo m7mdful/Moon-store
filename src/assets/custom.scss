@@ -5,6 +5,17 @@ $primary: #3A3845;
 $secondary: #595667;
 $light:  #F7F6F5;
 
+// import the function & variables to get acess to the map and we import function first because variables using them 
+@import "../../node_modules/bootstrap/scss/_functions";
+@import "../../node_modules/bootstrap/scss/_variables";
+
+$custom-theme-colors:(
+    "semiWhite": #E5E5E5,
+);
+
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+//  for links
+
 // font fase
 $headings-font-family:'Garamond' ;
 $display-font-family: 'Poppins';

@@ -257,9 +257,9 @@
 						padding-bottom: 0;
 						width: 300px;
 						">
-			<button class="d-flex flex-row bg-transparent border-1 px-3 py-2 fs-5 fw-semibold">
-				SIGN UP
-			</button>
+            <router-link to="/register">
+                <button class="fw-semibold fs-7  text-primary bg-white" style="border: 2px solid #595667; padding: 15px 24px;">SIGN UP</button>
+            </router-link>  
 		</div>
 	</div>
 </template>

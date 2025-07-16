@@ -57,7 +57,7 @@
 			</div>
 			<!-- Mobile cart icon -->
 			<div class="d-lg-none mt-2">
-				<a href=""><img src="../assets/Vector.svg" alt="" /></a>
+				<router-link to="/cart" href=""><img src="../assets/Vector.svg" alt="" /></router-link>
 			</div>
 			<!-- Navigation links and search bar for Desktop -->
 			<div
@@ -108,7 +108,7 @@
 				</button>
 				<a href=""><img src="../assets/Avatar.svg" alt="" /></a>
 				<a href=""><img src="../assets/Heart.svg" alt="" /></a>
-				<a href=""><img src="../assets/Vector.svg" alt="" /></a>
+				<router-link to="/cart"><img src="../assets/Vector.svg" alt="" /></router-link>
 			</div>
 		</div>
 	</nav>

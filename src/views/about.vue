@@ -142,9 +142,9 @@
     <!-- meet our team sction -->
     <section class="container-xl text-center p-0">
         <!-- title of this section -->
-        <div class="row justify-content-center">
-            <h1 class="fw-bold fs-2 mb-5">MEET OUR TEAM</h1>
-        </div>
+        
+            <h1 class="fw-bold fs-2 mb-5 p-0">MEET OUR TEAM</h1>
+        
 
          <div class=" container-flud p-4 overflow-scroll " >
             <!-- flex container -->
@@ -193,11 +193,18 @@
             <p class="lead text-secondary fw-semibold p-0">Sign up for emails</p>
             <h1 class="text-primary fw-bold fs-2 d-none d-lg-block p-0" style="letter-spacing: 0.5px;">FOR NEWS, COLLECTIONS & MORE</h1>
             <h1 class="text-primary fw-bold fs-3  d-lg-none" style="letter-spacing: 0.5px;">FOR NEWS,<br> COLLECTIONS & MORE</h1>
-            <div class="text-center" style="width: 389px; padding-bottom: 8px;">
-                <p class="lead text-secondary p-4 " style="border-bottom: 2px solid #595667;">Enter your email address</p>
-            </div>
-            <button class="fw-semibold fs-7  text-primary bg-white" style="border: 2px solid #595667; padding: 15px 24px;">SIGN UP</button>
-            
+            <input class="bg-transparent text-center fs-5" placeholder="Enter your email" type="text" style="						border-bottom: 1.5px;
+						border-style: solid;
+						border-top: 0;
+						border-left: 0;
+						border-right: 0;
+						padding-bottom: 0;
+						width: 300px;
+						">
+             <!-- sing up button            -->
+            <router-link to="/register">
+                <button class="fw-semibold fs-7  text-primary bg-white" style="border: 2px solid #595667; padding: 15px 24px;">SIGN UP</button>
+            </router-link>            
 
         </div>
 

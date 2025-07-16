@@ -5,6 +5,7 @@ import contact from '../views/contact.vue'
 import product from '../views/product.vue'
 import login from '../views/login.vue'
 import shop from '../views/shop.vue'
+import register from '../views/register.vue';
 
 
 const routes = [
@@ -32,7 +33,13 @@ const routes = [
         path:'/login',
         name:'login',
         component:login
+    },
+    {
+        path:'/register',
+        name:'register',
+        component:register
     }
+    
 ]
 
 const router = createRouter({

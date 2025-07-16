@@ -86,15 +86,15 @@
     </section>
 
     <!-- spase between  for large screens-->
-     <div class="d-none d-lg-block" style="margin-top: 80px;">
-     </div>
+    <div class="d-none d-lg-block" style="margin-top: 80px;">
+    </div>
 
-     <!-- spase between  for mid to small screens-->
-     <div class="d-lg-none" style="margin-top: 40px;">
-     </div>
+    <!-- spase between  for mid to small screens-->
+    <div class="d-lg-none" style="margin-top: 40px;">
+    </div>
 
     <!-- forth col -->
-    <div class="container-xl p-0 text-center" >
+    <div class="container-xl p-0 m" >
         <!-- grid system -->
         <div class="row g-0 justify-content-center">
 
@@ -104,18 +104,112 @@
             </div>
 
             <!-- text con -->
-             <div class="col-lg-5  bg-light">
-                <div class="d-flex justify-content-center align-items-center " style="height: 100%;">
+             <div class="col-lg-5">
+                <div class="d-grid justify-content-start " style="height: 100%;">
                     <div class="mx-3 p-5">
-                            <h2 class="mb-4">2010</h2>
-                            <p class="lead">Rutrum vitae risus eget, vulputate aliquam nisi ex gravida neque tempus. sit aliquam sit nullam neque ultrices.</p>
+                        <h2 class="mb-4 fs-3 fw-bold">HOW WE WORKS</h2>
+
+                        <div class="row mb-4">
+                            <p class="fw-semibold fs-4">Product design</p>
+                            <p class="lead text-secondary">Lorem ipsum dolor sit amet consectetur adipiscing eli mattis sit phasellus mollis.</p>
+                        </div>
+
+                        <div class="row">
+                            <p class="fw-semibold fs-4">Crafted</p>
+                            <p class="lead text-secondary">Rutrum vitae risus eget, vulputate aliquam nisi ex gravida neque tempus.</p>
+                        </div>
+
+                        <div class="row">
+                            <p class="fw-semibold fs-4">Sell product</p>
+                            <p class="lead text-secondary">Maecenas sem eros, rutrum vitae risus eget, vulputate aliquam nisi.</p>
+                        </div>
+                            
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-    
+
+    <!-- spase between  for large screens-->
+    <div class="d-none d-lg-block" style="margin-top: 80px;">
+    </div>
+
+    <!-- spase between  for mid to small screens-->
+    <div class="d-lg-none" style="margin-top: 32px;">
+    </div>
+
+    <!-- meet our team sction -->
+    <section class="container-xl text-center p-0">
+        <!-- title of this section -->
+        <div class="row justify-content-center">
+            <h1 class="fw-bold fs-2 mb-5">MEET OUR TEAM</h1>
+        </div>
+
+         <div class=" container-flud p-4 overflow-scroll " >
+            <!-- flex container -->
+            <div class="d-flex flex-row flex-nowrap  justify-content-md-center gap-lg-5 gap-4 ">
+                <!-- img -->
+                <div class="">
+                    <img src="../assets/img/ceo.png" alt="" style="width: 255px; height: 382;;">
+                    <p class="text-capitalize fw-semibold fs-6 pt-4">BERNIE PATTERSON</p>
+                    <p class="fs-6 text-grey">CEO & Founder</p>
+                </div>
+
+                 <!-- img -->
+                 <div class="">
+                    <img src="../assets/img/atist.png" alt="" style="width: 255px; height: 382;;">
+                    <p class="text-capitalize fw-semibold fs-6 pt-4">CORBIN HOSSAIN</p>
+                    <p class="fs-6 text-grey">Artist</p>
+                </div>
+
+                    <!-- img -->
+                    <div class="">
+                    <img src="../assets/img/ceo.png" alt="" style="width: 255px; height: 382;;">
+                    <p class="text-capitalize fw-semibold fs-6 pt-4">BERNIE PATTERSON</p>
+                    <p class="fs-6 text-grey">CEO & Founder</p>
+                </div>
+
+                 <!-- img -->
+                 <div class="">
+                    <img src="../assets/img/atist.png" alt="" style="width: 255px; height: 382;;">
+                    <p class="text-capitalize fw-semibold fs-6 pt-4">CORBIN HOSSAIN</p>
+                    <p class="fs-6 text-grey">Artist</p>
+                </div>
+            </div>
+            </div>
+    </section>
+
+    <!-- spase between  for large screens-->
+    <div class="d-none d-lg-block" style="margin-top: 80px;">
+    </div>
+
+    <!-- spase between  for mid to small screens-->
+    <div class="d-lg-none" style="margin-top: 40px;">
+    </div>
+
+    <section class="container-xl p-0 text-center">
+        <div class="d-flex flex-column  align-items-center" style="row-gap: 24px;">
+            <p class="lead text-secondary fw-semibold p-0">Sign up for emails</p>
+            <h1 class="text-primary fw-bold fs-2 d-none d-lg-block p-0" style="letter-spacing: 0.5px;">FOR NEWS, COLLECTIONS & MORE</h1>
+            <h1 class="text-primary fw-bold fs-3  d-lg-none" style="letter-spacing: 0.5px;">FOR NEWS,<br> COLLECTIONS & MORE</h1>
+            <div class="text-center" style="width: 389px; padding-bottom: 8px;">
+                <p class="lead text-secondary p-4 " style="border-bottom: 2px solid #595667;">Enter your email address</p>
+            </div>
+            <button class="fw-semibold fs-7  text-primary bg-white" style="border: 2px solid #595667; padding: 15px 24px;">SIGN UP</button>
+            
+
+        </div>
+
+    </section>
+
+     <!-- spase between  for large screens-->
+     <div class="d-none d-lg-block" style="margin-top: 80px;">
+    </div>
+
+    <!-- spase between  for mid to small screens-->
+    <div class="d-lg-none" style="margin-top: 40px;">
+    </div>
         
 </template>
 

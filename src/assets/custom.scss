@@ -11,6 +11,8 @@ $light:  #F7F6F5;
 
 $custom-theme-colors:(
     "semiWhite": #E5E5E5,
+    "grey":#807F86,
+
 );
 
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);
@@ -85,6 +87,10 @@ $display-font-family: 'Poppins';
     font-size: 1.4rem !important; //14px
 }
 
+.fs-7{
+    ffont-size: 1.2rem !important; //12px
+}
+
 
 
 :root{
@@ -95,6 +101,22 @@ $display-font-family: 'Poppins';
     font-size: 1.6rem;
     font-weight: 400;
 }
+
+//layo out
+
+
+// scss-docs-end container-max-widths
+
+// @include _assert-ascending($container-max-widths, "$container-max-widths");
+
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns:                12 !default;
+$grid-gutter-width:          30px;
+$grid-row-columns:            6 !default;
 
     //font size
 

@@ -8,8 +8,7 @@ import login from '../views/login.vue'
 import shop from '../views/shop.vue'
 import register from '../views/register.vue';
 import cart from '../views/cart.vue'
-import checkout from '../views/checkout.vue'
-import product from '../views/product.vue'
+import checkout from '../views/checkout.vue'    
 const routes = [
     {
         path:'/',

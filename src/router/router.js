@@ -9,6 +9,7 @@ import shop from '../views/shop.vue'
 import register from '../views/register.vue';
 import cart from '../views/cart.vue'
 import checkout from '../views/checkout.vue'
+import product from '../views/product.vue'
 const routes = [
     {
         path:'/',
@@ -49,6 +50,11 @@ const routes = [
         path:'/checkout',
         name:'checkout',
         component:checkout
+    },
+          {
+        path:'/product',
+        name:'product',
+        component:product
     }
     
 ]

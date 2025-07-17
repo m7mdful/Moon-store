@@ -96,8 +96,8 @@
 			<h1 class="fs-3 fw-bold">BEST SELLERS</h1>
 		</div>
 		<div
-			class="d-flex flex-wrap justify-content-center align-content-center"
-			style="gap: 30px; padding: 120px"
+			class="d-flex flex-wrap justify-content-center align-content-center p-lg-2 p-1"
+			style="gap: 15px;"
 		>
 			<productCard
 				:imgSrc="shop9"
@@ -219,8 +219,8 @@
 			<h1 class="fs-3 fw-bold">DISCOVER NEW ARRIVALS</h1>
 		</div>
 		<div
-			class="d-flex flex-wrap justify-content-center align-content-center"
-			style="gap: 30px; padding: 120px"
+			class="d-flex flex-wrap justify-content-center align-content-center p-1 p-lg-2"
+			style="gap: 15px;"
 		>
 						<productCard
 				:imgSrc="shop9"

@@ -1,3 +1,4 @@
+<!-- Mohammed Al Naji -->
 <script setup>
 	import productCard from '../components/productCard.vue'
 	import shop9 from '../assets/img/shop9.png'

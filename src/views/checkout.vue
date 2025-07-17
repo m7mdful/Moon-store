@@ -1,4 +1,8 @@
-<script setup></script>
+<!-- Mohammed Al Naji -->
+<script setup>
+import { ref } from 'vue';
+const selectedPaymentMethod = ref('creditCard');
+</script>
 
 <template>
 	<div class="container">
@@ -146,7 +150,7 @@
 			<div class="w-100 mx-lg-5">
 				<div class="d-flex flex-column gap-2 p-5">
 					<div
-						class=" fs-5 fw-semibold d-flex justify-content-between align-items-center"
+						class="fs-5 fw-semibold d-flex justify-content-between align-items-center"
 					>
 						<p>Product</p>
 						<p>Subtotal</p>
@@ -171,10 +175,52 @@
 						<p>$59</p>
 					</div>
 					<div
-						class=" fs-5 d-flex justify-content-between align-items-center"
+						class="fs-5 d-flex justify-content-between align-items-center"
 					>
-						<p>Product</p>
 						<p>Subtotal</p>
+						<p>$475.00</p>
+					</div>
+					<div
+						class="fs-5 d-flex justify-content-between align-items-center"
+					>
+						<p>Shipping</p>
+						<p>$15.00</p>
+					</div>
+					<hr />
+					<div
+						class="fw-semibold fs-5 d-flex justify-content-between align-items-center"
+					>
+						<p>Total</p>
+						<p>$490.00</p>
+					</div>
+					<div class="d-flex flex-column gap-4 p-4 bg-primary text-white">
+						<p class="fs-5 fw-semibold">Payment</p>
+						<div class="d-flex flex-row justify-content-between">
+							<div class="d-flex flex-row gap-3 align-items-center  justify-content-between">
+								<input type="radio" id="" value="creditCard" v-model="selectedPaymentMethod" name="paymentMethod">
+								<label for="">Credit Card</label>
+							</div>
+							<div>
+								<img src="../assets/card.svg" width="50" alt="">
+							</div>
+						</div>
+						<div class="d-flex flex-column gap-2 mt-2" v-if="selectedPaymentMethod === 'creditCard'">
+							<input class="p-2 bg-transparent" placeholder="Card Number" id="cardNumber" type="text" style="border-style: solid; border-width: 1px; border-color: white;">
+							<input class="p-2 bg-transparent" placeholder="Name on card" id="nameOnCard" type="text" style="border-style: solid; border-width: 1px; border-color: white;">
+							<div class="d-flex flex-row w-100 justify-content-between" style="gap: 15px;">
+								<input class="p-2 bg-transparent w-50" placeholder="Expairation date (MM/YY)" id="expirationDate" type="text" style="border-style: solid; border-width: 1px; border-color: white;">
+								<input class="p-2 bg-transparent w-50" placeholder="Security code" id="securityCode" type="text" style="border-style: solid; border-width: 1px; border-color: white;">
+							</div>
+						</div>
+						<div class="d-flex flex-row justify-content-between" >
+							<div class="d-flex flex-row gap-3 align-items-center  justify-content-between">
+								<input type="radio" name="paymentMethod" id="" value="paypal" v-model="selectedPaymentMethod">
+								<img src="../assets/paypal.svg" width="60" alt="">
+							</div>
+						</div>
+						<div class="fs-7">
+							<button class="w-100 p-3 bg-transparent text-white" style="border-style: solid; border-width: 1px; border-color: white;">PLACE ORDER</button>
+						</div>
 					</div>
 				</div>
 			</div>

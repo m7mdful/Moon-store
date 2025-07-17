@@ -1,3 +1,4 @@
+<!-- Mohammed Al Naji -->
 <script setup>
 import cartItem from "../components/cartItem.vue";
 import image from "../assets/img/shop9.png";

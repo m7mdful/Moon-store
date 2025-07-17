@@ -237,7 +237,7 @@
 
         
       <!-- Product Grid -->
-      <div class="product-grid px-3 px-md-4" style="padding-top:20px; margin-bottom:90px">
+      <div class="product-grid  px-md-4" style="padding-top:20px; margin-bottom:90px;padding-right: 10px;">
         <productCard
           v-for="product in products"
           :key="product.id"

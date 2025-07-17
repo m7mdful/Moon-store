@@ -5,7 +5,7 @@ import image from "../assets/img/shop9.png";
 
 <template>
 	<div class="d-flex flex-column gap-4">
-		<div class="margining mb-4">
+		<div class=" mb-4">
 			<div
 				class="d-flex flex-column gap-4 justify-content-start align-content-center"
 			>
@@ -29,7 +29,6 @@ import image from "../assets/img/shop9.png";
 					</div>
 					<p class="fs-5">Cart (3 items)</p>
 					<div class="d-none d-lg-block">
-						
 						<div
 							class="row text-center fs-6 text-white p-1 pt-3 bg-primary justify-content-between"
 						>
@@ -53,27 +52,27 @@ import image from "../assets/img/shop9.png";
 							</div>
 						</div>
 					</div>
-						<cartItem
-							:image="image"
-							title="PORCELAIN DINNER PLATE (27CM)"
-							price="$59"
-							quantity="1"
-							subtotal="$59"
-						/>
-						<cartItem
-							:image="image"
-							title="PORCELAIN DINNER PLATE (27CM)"
-							price="$59"
-							quantity="1"
-							subtotal="$59"
-						/>
-						<cartItem
-							:image="image"
-							title="PORCELAIN DINNER PLATE (27CM)"
-							price="$59"
-							quantity="1"
-							subtotal="$59"
-						/>
+					<cartItem
+						:image="image"
+						title="PORCELAIN DINNER PLATE (27CM)"
+						price="$59"
+						quantity="1"
+						subtotal="$59"
+					/>
+					<cartItem
+						:image="image"
+						title="PORCELAIN DINNER PLATE (27CM)"
+						price="$59"
+						quantity="1"
+						subtotal="$59"
+					/>
+					<cartItem
+						:image="image"
+						title="PORCELAIN DINNER PLATE (27CM)"
+						price="$59"
+						quantity="1"
+						subtotal="$59"
+					/>
 					<div
 						class="d-flex flex-wrap justify-content-between align-items-center gap-5"
 					>
@@ -135,15 +134,17 @@ import image from "../assets/img/shop9.png";
 								<p>$500.00</p>
 							</div>
 							<div class="d-flex justify-content-center mt-4">
-								<button
-									class="bg-transparent fw-semibold fs-7 text-white"
-									style="
-										border: 1px solid white;
-										padding: 8px 90px;
-									"
-								>
-									PROCEED TO CHECKOUT
-								</button>
+								<router-link to="/checkout">
+									<button
+										class="bg-transparent fw-semibold fs-7 text-white"
+										style="
+											border: 1px solid white;
+											padding: 8px 90px;
+										"
+									>
+										PROCEED TO CHECKOUT
+									</button>
+								</router-link>
 							</div>
 						</div>
 					</div>

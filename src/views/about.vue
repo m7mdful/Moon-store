@@ -221,16 +221,5 @@
 </template>
 
 <style scoped>
-    .fix-titel {
-        font-size: 36px;
-    }
-    /*  
-    h2 {
-        font-family:'garmond' ;
-        font-size: 28px;
-    }
-    p {
-        font-size: 16px;
-    } */
 
 </style>

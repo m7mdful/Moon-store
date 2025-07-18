@@ -1,35 +1,30 @@
 //default variable overrides
 
 //color
-$primary: #3A3845;
+$primary: #3a3845;
 $secondary: #595667;
-$light:  #F7F6F5;
+$light: #f7f6f5;
 
-// import the function & variables to get acess to the map and we import function first because variables using them 
+// import the function & variables to get acess to the map and we import function first because variables using them
 @import "../../node_modules/bootstrap/scss/_functions";
 @import "../../node_modules/bootstrap/scss/_variables";
 
-$custom-theme-colors:(
-    "semiWhite": #E5E5E5,
-    "grey":#807F86,
-
+$custom-theme-colors: (
+  "semiWhite": #e5e5e5,
+  "grey": #807f86,
+  "brown": #c69b7b,
 );
 
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 //  for links
 
 // font fase
-$headings-font-family:'Garamond' ;
-$display-font-family: 'Poppins';
-
+$headings-font-family: "Garamond";
+$display-font-family: "Poppins";
 
 // $h1-font-size:                $font-size-base * 2.5 !default;
 // $h2-font-size:                $font-size-base * 2 !default;
 // $h3-font-size:                $font-size-base * 1.75 !default;
-
-
-
-
 
 //import bootstrap scss
 @import "../../node_modules/bootstrap/scss/bootstrap";
@@ -55,70 +50,66 @@ $display-font-family: 'Poppins';
 //Typography
 
 //Inter font
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 //Garamond font
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 //Poppins font
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 // fixed font size
 
 .fs-1 {
-    font-size: 4rem !important; //40px
+  font-size: 4rem !important; //40px
 }
 
 .fs-2 {
-    font-size: 3.6rem !important; //36px
+  font-size: 3.6rem !important; //36px
 }
 
 .fs-3 {
-    font-size: 2.8rem !important; //28px
+  font-size: 2.8rem !important; //28px
 }
 
 .fs-4 {
-    font-size: 1.8rem !important; //18px
+  font-size: 1.8rem !important; //18px
 }
 
 .fs-5 {
-    font-size: 1.6rem !important; //16px
+  font-size: 1.6rem !important; //16px
 }
 
 .fs-6 {
-    font-size: 1.4rem !important; //14px
+  font-size: 1.4rem !important; //14px
 }
 
-.fs-7{
-    ffont-size: 1.2rem !important; //12px
+.fs-7 {
+  ffont-size: 1.2rem !important; //12px
 }
 
-
-
-:root{
-    --bs-body-font-family: 'Inter'
+:root {
+  --bs-body-font-family: "Inter";
 }
 
 .lead {
-    font-size: 1.6rem;
-    font-weight: 400;
+  font-size: 1.6rem;
+  font-weight: 400;
 }
 
 //layo out
-
 
 // scss-docs-end container-max-widths
 
 // @include _assert-ascending($container-max-widths, "$container-max-widths");
 
-
 // Grid columns
 //
 // Set the number of columns and specify the width of the gutters.
 
-$grid-columns:                12 !default;
-$grid-gutter-width:          30px;
-$grid-row-columns:            6 !default;
+$grid-columns: 12 !default;
+$grid-gutter-width: 30px;
+$grid-row-columns: 6 !default;
 
-    //font size
+//font size
 
 // $font-size-root affects the value of `rem`, which is used for as well font sizes, paddings, and margins
 // $font-size-base affects the font size of the body text
@@ -129,49 +120,49 @@ $grid-row-columns:            6 !default;
 
 //heding
 
-    //size
-    // $h1-font-size:                $font-size-base * 2.5 !default;
-    // $h2-font-size:                $font-size-base * 2 !default;
-    // $h3-font-size:                $font-size-base * 1.75 !default;
-    // $h4-font-size:                $font-size-base * 1.5 !default;
-    // $h5-font-size:                $font-size-base * 1.25 !default;
-    // $h6-font-size:                $font-size-base !default;
+//size
+// $h1-font-size:                $font-size-base * 2.5 !default;
+// $h2-font-size:                $font-size-base * 2 !default;
+// $h3-font-size:                $font-size-base * 1.75 !default;
+// $h4-font-size:                $font-size-base * 1.5 !default;
+// $h5-font-size:                $font-size-base * 1.25 !default;
+// $h6-font-size:                $font-size-base !default;
 
-    // headings-variables
-    // $headings-margin-bottom:      $spacer * .5 !default;
-    // $headings-font-family:        null !default;
-    // $headings-font-style:         null !default;
-    // $headings-font-weight:        500 !default;
-    // $headings-line-height:        1.2 !default;
-    // $headings-color:              inherit !default;
+// headings-variables
+// $headings-margin-bottom:      $spacer * .5 !default;
+// $headings-font-family:        null !default;
+// $headings-font-style:         null !default;
+// $headings-font-weight:        500 !default;
+// $headings-line-height:        1.2 !default;
+// $headings-color:              inherit !default;
 
 // scss-docs-start display-headings
 
-        // $display-font-sizes: (
-        //     1: 5rem,
-        //     2: 4.5rem,
-        //     3: 4rem,
-        //     4: 3.5rem,
-        //     5: 3rem,
-        //     6: 2.5rem
-        //   ) !defa    
-        
-        //   $display-font-family: null !default;
-        //   $display-font-style:  null !default;
-        //   $display-font-weight: 300 !default;
-        //   $display-line-height: $headings-line-height !default;
+// $display-font-sizes: (
+//     1: 5rem,
+//     2: 4.5rem,
+//     3: 4rem,
+//     4: 3.5rem,
+//     5: 3rem,
+//     6: 2.5rem
+//   ) !defa
+
+//   $display-font-family: null !default;
+//   $display-font-style:  null !default;
+//   $display-font-weight: 300 !default;
+//   $display-line-height: $headings-line-height !default;
 
 //lead
 
-    // $lead-font-size:              $font-size-base * 1.25 !default;
-    // $lead-font-weight:            300 !default;
+// $lead-font-size:              $font-size-base * 1.25 !default;
+// $lead-font-weight:            300 !default;
 
 //font weight
 
-    // $font-weight-lighter:         lighter !default;
-    // $font-weight-light:           300 !default;
-    // $font-weight-normal:          400 !default;
-    // $font-weight-medium:          500 !default;
-    // $font-weight-semibold:        600 !default;
-    // $font-weight-bold:            700 !default;
-    // $font-weight-bolder:          bolder !default;
+// $font-weight-lighter:         lighter !default;
+// $font-weight-light:           300 !default;
+// $font-weight-normal:          400 !default;
+// $font-weight-medium:          500 !default;
+// $font-weight-semibold:        600 !default;
+// $font-weight-bold:            700 !default;
+// $font-weight-bolder:          bolder !default;

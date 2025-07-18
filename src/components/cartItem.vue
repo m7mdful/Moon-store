@@ -1,3 +1,4 @@
+<!-- Mohammed Al Naji -->
 <script setup>
 defineProps({
 	image: String,

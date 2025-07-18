@@ -1,3 +1,4 @@
+// Mohammed Al Naji
 import { createRouter, createWebHistory } from 'vue-router';
 import about from '../views/about.vue'
 import homepage from '../views/homepage.vue'
@@ -7,7 +8,7 @@ import login from '../views/login.vue'
 import shop from '../views/shop.vue'
 import register from '../views/register.vue';
 import cart from '../views/cart.vue'
-
+import checkout from '../views/checkout.vue'    
 const routes = [
     {
         path:'/',
@@ -43,6 +44,16 @@ const routes = [
         path:'/cart',
         name:'cart',
         component:cart
+    },
+        {
+        path:'/checkout',
+        name:'checkout',
+        component:checkout
+    },
+          {
+        path:'/product',
+        name:'product',
+        component:product
     }
     
 ]

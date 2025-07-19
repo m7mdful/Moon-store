@@ -44,9 +44,9 @@
 							<a href=""
 								><img src="../assets/Heart.svg" alt=""
 							/></a>
-							<a href=""
-								><img src="../assets/Avatar.svg" alt=""
-							/></a>
+							<router-link to="/profile">
+								<img  src="../assets/Avatar.svg" alt=""/>
+							</router-link>
 						</div>
 					</li>
 				</ul>
@@ -107,7 +107,9 @@
 				>
 					<img src="../assets/Search.svg" alt="" />
 				</button>
-				<a href=""><img src="../assets/Avatar.svg" alt="" /></a>
+				<router-link to="/profile">
+					<img src="../assets/Avatar.svg" alt="" />
+				</router-link>
 				<a href=""><img src="../assets/Heart.svg" alt="" /></a>
 				<router-link to="/cart"><img src="../assets/Vector.svg" alt="" /></router-link>
 			</div>

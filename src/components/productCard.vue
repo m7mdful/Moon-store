@@ -65,7 +65,7 @@ onMounted(() => window.addEventListener('resize', handleResize))
 onBeforeUnmount(() => window.removeEventListener('resize', handleResize))
 
 const goToProduct = () => {
-  router.push('/productinfo') 
+  router.push('/product') 
 }
 
 const addToCart = () => {

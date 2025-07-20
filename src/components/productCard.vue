@@ -20,7 +20,7 @@
         }"/>
 
       <!-- Body -->
-      <div class="card-body p-0 d-flex flex-column justify-content-between align-items-center " style="height: 100%;">
+      <div class="card-body p-0 d-flex flex-column justify-content-between align-items-center" style="height: 100%;">
         <div class="w-100 px-2 pt-2">
           <p class="fw-bold mb-1" style="font-size:16px;">{{ title }}</p>
           <span class="d-block fs-6 fw-semibold">${{ price }}</span>
@@ -28,17 +28,28 @@
         </div>
 
         <!-- Button -->
-        <button type="button" class=" .b-an btn text-black border-1 border-black rounded-0 fw-semibold position-relative " :style="{ width: isMobile ? '170px' : '255px', height: '39px'}" @click.stop="addToCart">Add to cart</button>
+        <button
+          type="button"
+          class="btn text-black border-1 border-black rounded-0 fw-semibold position-relative"
+          :style="{ width: isMobile ? '170px' : '255px', height: '39px' }"
+          @click.stop="addToCart"
+        >
+          Add to cart
+        </button>
       </div>
     </div>
+  </div>
 
-    <!-- Modal -->
-    <div v-if="showModal" class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex justify-content-center align-items-center" style="z-index: 1050;">
-      <div class="bg-white p-4 rounded text-center" style="min-width: 300px;">
-        <p class="mb-4 fw-bold">Product added to cart!</p>
-        <button class="btn btn-dark me-2" @click="goToCart">Go to Cart</button>
-        <button class="btn btn-outline-secondary" @click="showModal = false">Continue Shopping</button>
-      </div>
+  <!-- Modal (move it outside the card wrapper div) -->
+  <div
+    v-if="showModal"
+    class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex justify-content-center align-items-center"
+    style="z-index: 1050;"
+  >
+    <div class="bg-white p-4 rounded text-center" style="min-width: 300px;">
+      <p class="mb-4 fw-bold">Product added to cart!</p>
+      <button class="btn btn-dark me-2" @click="goToCart">Go to Cart</button>
+      <button class="btn btn-outline-secondary" @click="showModal = false">Continue Shopping</button>
     </div>
   </div>
 </template>

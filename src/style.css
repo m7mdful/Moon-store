@@ -1,0 +1,6 @@
+.btnscale{
+    transition: all 0.2s ease-in-out;
+}
+.btnscale:hover {
+    transform: scale(1.02);
+}

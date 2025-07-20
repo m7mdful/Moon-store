@@ -19,11 +19,11 @@
       <div
         v-for="product in products"
         :key="product.id"
-        class="col-6 col-md-6 col-lg-4 d-flex justify-content-center position-relative"
+        class="col-6 col-md-6 col-lg-4 d-flex justify-content-center position-relative "
         style="max-width: 270px"
       >
         <!-- Delete Icon -->
-        <button class="btn position-absolute top-0 end-0 z-3 m-3 p-1 gx-3 border-0" style=" width: 30px; height: 30px;" @click="removeFromWishlist(product.id)" >
+        <button class="btn position-absolute top-0 end-0 z-3 m-3 p-1 gx-3 border-0 " style=" width: 30px; height: 30px;" @click="removeFromWishlist(product.id)" >
           <img src="../assets/icons8-delete-100.png" width="16" height="16" />
         </button>
 
@@ -37,11 +37,11 @@
       </div>
     </section>
 
-    <!-- Bottom Buttons -->
+     <!-- Bottom Buttons -->
     <div class="d-flex justify-content-center gap-3 mb-5 flex-wrap">
-      <button class="btn btn-dark px-4 py-2">Add All to Cart</button>
-      <button class="btn btn-outline-danger d-flex align-items-center gap-2 px-4 py-2" @click="clearWishlist">
-        <img src="../assets/icons8-delete-100.png" width="18" height="18" /> Clear List
+      <button class="btn  btn-dark px-4 py-2 fs-4" style="width: 300px; height: 50px">Add All to Cart</button>
+      <button style="width: 300px; height: 50px;" class="btn btn-outline-danger d-flex align-items-center justify-content-center gap-2 px-4 py-2" @click="clearWishlist">
+        <img src="../assets/icons8-delete-100.png" width="18" height="18" /> <span class="fs-4">Clear List </span>
       </button>
     </div>
   </div>

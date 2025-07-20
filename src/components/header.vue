@@ -56,7 +56,9 @@
 
 			<!-- Logo(Desk,Mob) -->
 			<div>
-				<img src="../assets/logo.svg" alt="" />
+				<router-link to="/">
+					<img src="../assets/logo.svg" alt="" />
+				</router-link>
 			</div>
 			<!-- Mobile cart icon -->
 			<div class="d-lg-none mt-2">
@@ -66,22 +68,22 @@
 			<div
 				class="d-none d-lg-flex justify-content-around align-items-center gap-5 primary-color fsize"
 			>
-				<router-link to="/" class="text-decoration-none primary-color"
+				<router-link to="/" class="text-decoration-none primary-color btnscale"
 					>Home</router-link
 				>
 				<router-link
 					to="/shop"
-					class="text-decoration-none primary-color"
+					class="text-decoration-none primary-color btnscale"
 					>Shop</router-link
 				>
 				<router-link
 					to="/about"
-					class="text-decoration-none primary-color"
+					class="text-decoration-none primary-color btnscale"
 					>About</router-link
 				>
 				<router-link
 					to="/contact"
-					class="text-decoration-none primary-color"
+					class="text-decoration-none primary-color btnscale"
 					>Contact</router-link
 				>
 			</div>
@@ -107,13 +109,13 @@
 					aria-controls="#search"
 					href=""
 				>
-					<img src="../assets/Search.svg" alt="" />
+					<img class="btnscale" src="../assets/Search.svg" alt="" />
 				</button>
 				<router-link to="/profile">
-					<img src="../assets/Avatar.svg" alt="" />
+					<img class="btnscale" src="../assets/Avatar.svg" alt="" />
 				</router-link>
-				<router-link to="/fav"><img src="../assets/Heart.svg" alt="" /></router-link>
-				<router-link to="/cart"><img src="../assets/Vector.svg" alt="" /></router-link>
+				<router-link to="/fav"><img class="btnscale" src="../assets/Heart.svg" alt="" /></router-link>
+				<router-link to="/cart"><img class="btnscale" src="../assets/Vector.svg" alt="" /></router-link>
 			</div>
 		</div>
 	</nav>

@@ -112,7 +112,7 @@
 				<router-link to="/profile">
 					<img src="../assets/Avatar.svg" alt="" />
 				</router-link>
-				<a href=""><img src="../assets/Heart.svg" alt="" /></a>
+				<router-link to="/fav"><img src="../assets/Heart.svg" alt="" /></router-link>
 				<router-link to="/cart"><img src="../assets/Vector.svg" alt="" /></router-link>
 			</div>
 		</div>

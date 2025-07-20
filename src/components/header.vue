@@ -41,9 +41,11 @@
 						<div
 							class="d-flex flex-row justify-content-around align-items-center gap-1"
 						>
-							<a href=""
-								><img src="../assets/Heart.svg" alt=""
-							/></a>
+							<router-link to="/fav">
+								<img src="../assets/Heart.svg" alt=""/>
+							</router-link>
+								
+
 							<router-link to="/profile">
 								<img  src="../assets/Avatar.svg" alt=""/>
 							</router-link>

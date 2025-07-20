@@ -10,6 +10,7 @@ import register from '../views/register.vue';
 import cart from '../views/cart.vue'
 import checkout from '../views/checkout.vue'
 import profile from '../views/profile.vue' 
+import fav from '../views/fav.vue';
 const routes = [
     {
         path:'/',
@@ -60,6 +61,12 @@ const routes = [
         path:'/profile',
         name:'profile',
         component:profile
+    }
+    ,
+    {
+        path:'/fav',
+        name:'fav',
+        component:fav
     }
     
 ]

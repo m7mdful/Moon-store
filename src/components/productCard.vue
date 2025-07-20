@@ -1,6 +1,6 @@
 <!-- abdullah albashrawi -->
 <template>
-  <div class="d-flex flex-column flex-md-row align-items-start pt-2">
+  <div class="d-flex flex-column flex-md-row align-items-start pt-2 btnscale">
     <!-- Card Wrapper -->
     <div
       class="card rounded-0 border-0 position-relative"
@@ -20,15 +20,15 @@
         }"/>
 
       <!-- Body -->
-      <div class="card-body p-0 d-flex flex-column justify-content-between align-items-center" style="height: 100%;">
+      <div class="card-body p-0 d-flex flex-column justify-content-between align-items-center " style="height: 100%;">
         <div class="w-100 px-2 pt-2">
           <p class="fw-bold mb-1" style="font-size:16px;">{{ title }}</p>
-          <span class="d-block fs-6 fw-semibold">{{ price }}</span>
+          <span class="d-block fs-6 fw-semibold">${{ price }}</span>
           <p class="card-text mt-3 text-muted fs-6">{{ description }}</p>
         </div>
 
         <!-- Button -->
-        <button type="button" class=" .b-an btn text-black border-1 border-black rounded-0 fw-semibold position-relative" :style="{ width: isMobile ? '170px' : '255px', height: '39px'}" @click.stop="addToCart">Add to cart</button>
+        <button type="button" class=" .b-an btn text-black border-1 border-black rounded-0 fw-semibold position-relative " :style="{ width: isMobile ? '170px' : '255px', height: '39px'}" @click.stop="addToCart">Add to cart</button>
       </div>
     </div>
 

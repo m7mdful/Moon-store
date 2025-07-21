@@ -31,7 +31,7 @@ import image from "../assets/img/shop9.png";
 					<p class="fs-5">Cart (3 items)</p>
 					<div class="d-none d-lg-block">
 						<div
-							class="row text-center fs-6 text-white p-1 pt-3 bg-primary justify-content-between"
+							class="row text-center fs-5 text-white p-1 pt-3 bg-primary justify-content-between rounded-4"
 						>
 							<div class="col-auto">
 								<img src="../assets/Trash.svg" alt="" />

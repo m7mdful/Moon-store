@@ -36,7 +36,7 @@ import shop9 from "../assets/img/shop9.png";
 			>
 				<!-- img -->
 				<div class="text-center btnscale">
-					<img src="../assets/img/Htableware.png" alt="" />
+					<img  class="rounded-4" src="../assets/img/Htableware.png" alt="" />
 					<p class="text-capitalize fw-semibold fs-6 pt-4">
 						TABLEWARE
 					</p>
@@ -44,7 +44,7 @@ import shop9 from "../assets/img/shop9.png";
 
 				<!-- img -->
 				<div class="text-center btnscale">
-					<img src="../assets/img/Htableware.png" alt="" />
+					<img class="rounded-4" src="../assets/img/Htableware.png" alt="" />
 					<p class="text-capitalize fw-semibold fs-6 pt-4">
 						TABLEWARE
 					</p>
@@ -52,7 +52,7 @@ import shop9 from "../assets/img/shop9.png";
 
 				<!-- img -->
 				<div class="text-center btnscale">
-					<img src="../assets/img/Htableware.png" alt="" />
+					<img class="rounded-4" src="../assets/img/Htableware.png" alt="" />
 					<p class="text-capitalize fw-semibold fs-6 pt-4">
 						TABLEWARE
 					</p>
@@ -60,7 +60,7 @@ import shop9 from "../assets/img/shop9.png";
 
 				<!-- img -->
 				<div class="text-center btnscale">
-					<img src="../assets/img/Htableware.png" alt="" />
+					<img class="rounded-4" src="../assets/img/Htableware.png" alt="" />
 					<p class="text-capitalize fw-semibold fs-6 pt-4">
 						TABLEWARE
 					</p>
@@ -113,49 +113,49 @@ import shop9 from "../assets/img/shop9.png";
 				<productCard
 					:imgSrc="shop9"
 					title="Marin White Dinner Plate"
-					price="$30.50"
+					price="30.50"
 					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
 				/>
 				<productCard
 					:imgSrc="shop9"
 					title="Marin White Dinner Plate"
-					price="$30.50"
+					price="30.50"
 					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
 				/>
 				<productCard
 					:imgSrc="shop9"
 					title="Marin White Dinner Plate"
-					price="$30.50"
+					price="30.50"
 					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
 				/>
 				<productCard
 					:imgSrc="shop9"
 					title="Marin White Dinner Plate"
-					price="$30.50"
+					price="30.50"
 					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
 				/>
 				<productCard
 					:imgSrc="shop9"
 					title="Marin White Dinner Plate"
-					price="$30.50"
+					price="30.50"
 					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
 				/>
 				<productCard
 					:imgSrc="shop9"
 					title="Marin White Dinner Plate"
-					price="$30.50"
+					price="30.50"
 					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
 				/>
 				<productCard
 					:imgSrc="shop9"
 					title="Marin White Dinner Plate"
-					price="$30.50"
+					price="30.50"
 					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
 				/>
 				<productCard
 					:imgSrc="shop9"
 					title="Marin White Dinner Plate"
-					price="$30.50"
+					price="30.50"
 					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
 				/>
 			</div>
@@ -240,25 +240,25 @@ import shop9 from "../assets/img/shop9.png";
 				<productCard
 					:imgSrc="shop9"
 					title="Marin White Dinner Plate"
-					price="$30.50"
+					price="30.50"
 					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
 				/>
 				<productCard
 					:imgSrc="shop9"
 					title="Marin White Dinner Plate"
-					price="$30.50"
+					price="30.50"
 					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
 				/>
 				<productCard
 					:imgSrc="shop9"
 					title="Marin White Dinner Plate"
-					price="$30.50"
+					price="30.50"
 					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
 				/>
 				<productCard
 					:imgSrc="shop9"
 					title="Marin White Dinner Plate"
-					price="$30.50"
+					price="30.50"
 					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
 				/>
 			</div>

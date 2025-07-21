@@ -21,7 +21,7 @@ defineProps({
 				<div
 					class="d-flex flex-row gap-4 justify-content-between align-items-center fs-5"
 				>
-					<img src="../assets/img/shop9.png" width="128" alt="" />
+					<img class="rounded-4" src="../assets/img/shop9.png" width="128" alt="" />
 					<p class="fw-semibold">PORCELAIN DINNER PLATE (27CM)</p>
 				</div>
 				<div class="d-flex flex-column gap-3">
@@ -69,17 +69,17 @@ defineProps({
 				</button>
 			</div>
 			<div class="col-2">
-				<img :src="image" alt="" width="128" />
+				<img class="rounded-4" :src="image" alt="" width="128" />
 			</div>
-			<div class="col-4">
+			<div class="col-4 fs-4">
 				<p>{{ title }}</p>
 			</div>
-			<div class="col-1">
+			<div class="col-1 fs-4">
 				<p>{{ price }}</p>
 			</div>
-			<div class="col-2">
+			<div class="col-2 fs-4">
 				<div
-					class="d-flex flex-row justify-content-center gap-5 py-1"
+					class="d-flex flex-row justify-content-center gap-5 py-1 rounded-4"
 					style="
 						width: 130px;
 						height: 48;
@@ -96,7 +96,7 @@ defineProps({
 					</button>
 				</div>
 			</div>
-			<div class="col-2">
+			<div class="col-2 fs-4">
 				<p style="color: #c69b7b">{{ subtotal }}</p>
 			</div>
 		</div>

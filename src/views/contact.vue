@@ -218,7 +218,7 @@
               >
               <input
                 class="form-control fs-6 rounded-0"
-                type="email"
+                type="text"
                 placeholder="Moon"
                 style="padding: 21px 16px 21px 16px; border: 2px solid #3a3845"
               />

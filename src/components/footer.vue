@@ -17,17 +17,19 @@
 							Lorem ipsum dolor sit amet consectetur adipiscing
 							elit aliquam mauris sed ma
 						</p>
-						<button
-							class="d-flex flex-row bg-transparent border-1 btnborder pcolor px-3 gap-1 py-2 fs-6"
-						>
-							GET STARTED
-							<img
-								src="../assets/Arrow_Right.svg"
-								width="12"
-								class=""
-								alt=""
-							/>
-						</button>
+						<router-link to="/register">
+							<button
+								class="d-flex flex-row bg-transparent border-1 btnborder pcolor px-3 gap-1 py-2 fs-6"
+							>
+								GET STARTED
+								<img
+									src="../assets/Arrow_Right.svg"
+									width="12"
+									class=""
+									alt=""
+								/>
+							</button>
+						</router-link>
 					</div>
 
 					<!-- links -->

@@ -33,7 +33,11 @@
             style="width: 30px; height: 30px"
             @click="showDeleteModal(product.id)"
           >
-            <img src="../assets/icons8-delete-100.png" width="16" height="16" />
+            <img
+              src="../assets/icons8-delete-100.png"
+              width="28px"
+              height="28px"
+            />
           </button>
 
           <!-- Product Card -->

@@ -1,3 +1,4 @@
+<!-- Abdllah AlBattat -->
 <script setup></script>
 
 <template>
@@ -277,7 +278,7 @@
 <style scoped>
 /* style for the slider img */
 .Slider {
-  background-image: url(../assets/img/Contact.png);
+  background-image: url(../assets/img/Contact.webp);
   background-size: cover;
   background-position: center;
   height: 545px;

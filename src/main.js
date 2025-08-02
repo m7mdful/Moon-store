@@ -11,3 +11,4 @@ import "../src/assets/css/custom.min.css"; //import the compiled CSS after setti
 
 
 createApp(App).use(router).mount('#app')
+

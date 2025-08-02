@@ -1,13 +1,10 @@
-<!-- abdullah albashrawi -->
 <template>
   <div class="container mt-5 px-2 px-md-4">
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb fs-6 ps-2">
         <li class="breadcrumb-item">
-          <router-link to="/" class="text-muted text-decoration-none"
-            >Home</router-link
-          >
+          <router-link to="/" class="text-muted text-decoration-none">Home</router-link>
         </li>
         <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
       </ol>
@@ -17,31 +14,25 @@
     <p class="fw-semibold fs-24 my-5 ps-2">
       Wishlist ({{ products.length }} items)
     </p>
-
-    <!-- Wishlist Grid -->
-    <section class="mb-5">
-      <div v-if="products.length > 0" class="row gy-5 justify-content-center">
+    <!-- Wishlist Items -->
+    <section class="mb-5 d-flex justify-content-center">
+      <div v-if="products.length" class="row gy-5 w-100" style="max-width: 1100px;">
         <div
           v-for="product in products"
           :key="product.id"
-          class="col-6 col-md-6 col-lg-4 d-flex justify-content-center position-relative"
-          style="max-width: 270px"
+          class="col-6 col-md-4 col-lg-3 d-flex justify-content-start position-relative"
         >
-          <!-- Delete Icon -->
+          <!-- Delete Button -->
           <button
-            class="btn position-absolute top-0 end-0 z-3 m-3 p-1 gx-3 border-0"
+            class="btn position-absolute top-0 end-0 z-3 m-4 p-0 border-0"
             style="width: 30px; height: 30px"
-            @click="showDeleteModal(product.id)"
+            @click="openDeleteModal(product.id)"
           >
-            <img
-              src="../assets/icons8-delete-100.png"
-              width="28px"
-              height="28px"
-            />
+            <img src="../assets/icons8-delete-100.png" width="28" height="28" />
           </button>
 
           <!-- Product Card -->
-          <productCard
+          <product-card
             :imgSrc="product.imgSrc"
             :title="product.title"
             :price="product.price"
@@ -49,6 +40,7 @@
           />
         </div>
       </div>
+      <!-- Empty State -->
       <CartEmpt
         v-else
         msg="Your Wishlist is empty"
@@ -61,15 +53,15 @@
       <button
         class="btn btn-dark px-4 py-2 fs-4"
         style="width: 300px; height: 50px"
-        @click="showCartModal"
+        @click="openCartModal"
       >
         Add All to Cart
       </button>
 
       <button
-        style="width: 300px; height: 50px"
         class="btn btn-outline-danger d-flex align-items-center justify-content-center gap-2 px-4 py-2"
-        @click="showClearAllModal"
+        style="width: 300px; height: 50px"
+        @click="openClearAllModal"
       >
         <img src="../assets/icons8-delete-100.png" width="18" height="18" />
         <span class="fs-4">Clear List</span>
@@ -78,30 +70,26 @@
 
     <!-- Confirmation Modal -->
     <div
-      class="modal fade"
-      id="confirmationModal"
-      tabindex="-1"
-      aria-labelledby="confirmationModalLabel"
-      aria-hidden="true"
-      ref="confirmModalEl"
+      v-if="showConfirmModal"
+      class="modal fade show d-block"
+      style="background: rgba(0,0,0,0.5);"
     >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header"></div>
-          <div class="modal-body d-flex justify-content-center fs-5">
+          <div class="modal-body text-center fs-5 py-4">
             {{ modalMessage }}
           </div>
-          <div class="modal-footer justify-content-center fs-5">
+          <div class="modal-footer justify-content-center border-0 pb-4">
             <button
               type="button"
-              class="btn btn-secondary fs-6"
-              data-bs-dismiss="modal"
+              class="btn btn-secondary fs-6 px-3"
+              @click="closeModal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-danger fs-6"
+              class="btn btn-danger fs-6 px-3"
               @click="confirmAction"
             >
               Yes, Confirm
@@ -113,28 +101,20 @@
 
     <!-- Add to Cart Modal -->
     <div
-      class="modal fade"
-      id="cartModal"
-      tabindex="-1"
-      aria-labelledby="cartModalLabel"
-      aria-hidden="true"
-      ref="cartModalEl"
+      v-if="showCartModal"
+      class="modal fade show d-block"
+      style="background: rgba(0,0,0,0.5);"
     >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title fs-4" id="cartModalLabel">
-              Items Added to Cart
-            </h5>
-          </div>
-          <div class="modal-body d-flex justify-content-center fs-5">
+          <div class="modal-body text-center fs-5 py-4">
             All items have been successfully added to your cart.
           </div>
-          <div class="modal-footer d-flex justify-content-center">
+          <div class="modal-footer justify-content-center border-0 pb-4">
             <button
               type="button"
-              class="btn btn-dark fs-5"
-              data-bs-dismiss="modal"
+              class="btn btn-dark fs-5 px-4"
+              @click="closeModal"
             >
               Close
             </button>
@@ -146,9 +126,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import productCard from "../components/productCard.vue";
 import CartEmpt from "../components/cardEmpt.vue";
+
 import card1 from "../assets/img/shop1.png";
 import card2 from "../assets/img/shop2.png";
 import card3 from "../assets/img/shop3.png";
@@ -158,8 +139,7 @@ import card6 from "../assets/img/shop6.png";
 import card7 from "../assets/img/shop7.png";
 import card8 from "../assets/img/shop8.png";
 
-import * as bootstrap from "bootstrap";
-
+// Products
 const products = ref([
   { id: 1, imgSrc: card1, title: "Small Ecru Ceramic Compote", price: "49.00" },
   { id: 2, imgSrc: card2, title: "Porcelain Dinner Plate", price: "49.00" },
@@ -171,53 +151,44 @@ const products = ref([
   { id: 8, imgSrc: card8, title: "Linen Cushion", price: "25.00" },
 ]);
 
-// delete
+// Modal State
+const showConfirmModal = ref(false);
+const showCartModal = ref(false);
 const selectedProductId = ref(null);
 const isClearAll = ref(false);
 const modalMessage = ref("");
-const confirmModalEl = ref(null);
-let confirmModalInstance = null;
 
-//  settings for "Add All to Cart"
-const cartModalEl = ref(null);
-let cartModalInstance = null;
-
-onMounted(() => {
-  confirmModalInstance = new bootstrap.Modal(confirmModalEl.value);
-  cartModalInstance = new bootstrap.Modal(cartModalEl.value);
-});
-
-// delete modal pops up
-function showDeleteModal(id) {
+// Functions
+function openDeleteModal(id) {
   selectedProductId.value = id;
   isClearAll.value = false;
   modalMessage.value =
     "Are you sure you want to remove this item from your wishlist?";
-  confirmModalInstance.show();
+  showConfirmModal.value = true;
 }
 
-//clear all
-function showClearAllModal() {
+function openClearAllModal() {
   selectedProductId.value = null;
   isClearAll.value = true;
   modalMessage.value = "Are you sure you want to clear your entire wishlist?";
-  confirmModalInstance.show();
+  showConfirmModal.value = true;
 }
 
-// del confimation and do
+function openCartModal() {
+  showCartModal.value = true;
+}
+
+function closeModal() {
+  showConfirmModal.value = false;
+  showCartModal.value = false;
+}
+
 function confirmAction() {
   if (isClearAll.value) {
     products.value = [];
   } else if (selectedProductId.value !== null) {
-    products.value = products.value.filter(
-      (p) => p.id !== selectedProductId.value
-    );
+    products.value = products.value.filter((p) => p.id !== selectedProductId.value);
   }
-  confirmModalInstance.hide();
-}
-
-// show modal add to cart
-function showCartModal() {
-  cartModalInstance.show();
+  closeModal();
 }
 </script>

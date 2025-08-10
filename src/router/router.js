@@ -75,6 +75,10 @@ const router = createRouter({
   // 3. Provide the history implementation to use. We are using the HTML5 history mode.
   history: createWebHistory(),
   routes, // short for `routes: routes`
+  scrollBehavior(to, from, savedPosition) {
+    // always scroll to top on route change
+    return { top: 0 }
+  }
 });
 
 export default router;

@@ -15,13 +15,13 @@ import shop9 from "../assets/img/shop9.png";
 			class="positioning d-flex flex-column justify-content-center align-items-center gap-3 p-5"
 		>
 			<img class="imagescaling" src="../assets/Icon.svg" alt="" />
-			<p class="pcolor fw-light fs-5">
+			<p class="pcolor fw-light fs-5 mt-4">
 				Handcrafted in Viet Nam since 1650
 			</p>
-			<h2 class="pcolor fs-2 fw-semibold">BAT TRANG <br />DINNER SET</h2>
+			<h2 class="pcolor fs-2 fw-semibold mt-4">BAT TRANG <br />DINNER SET</h2>
 			<RouterLink to="/shop">
 				<button
-					class="bg-white border-0 p-1 px-5 shopbtn fw-semibold fs-5 btnscale"
+					class="bg-white border-0 p-1 px-5 shopbtn fw-semibold fs-5 btnscale rounded-3"
 				>
 					SHOP NOW
 				</button>
@@ -44,7 +44,7 @@ import shop9 from "../assets/img/shop9.png";
 
 				<!-- img -->
 				<div class="text-center btnscale">
-					<img class="rounded-4" src="../assets/img/Htableware.png" alt="" />
+					<img class="rounded-4" src="../assets/img/HomeCat.png" alt="" />
 					<p class="text-capitalize fw-semibold fs-6 pt-4">
 						TABLEWARE
 					</p>
@@ -52,7 +52,7 @@ import shop9 from "../assets/img/shop9.png";
 
 				<!-- img -->
 				<div class="text-center btnscale">
-					<img class="rounded-4" src="../assets/img/Htableware.png" alt="" />
+					<img class="rounded-4" src="../assets/img/HomeCat2.png" alt="" />
 					<p class="text-capitalize fw-semibold fs-6 pt-4">
 						TABLEWARE
 					</p>
@@ -60,7 +60,7 @@ import shop9 from "../assets/img/shop9.png";
 
 				<!-- img -->
 				<div class="text-center btnscale">
-					<img class="rounded-4" src="../assets/img/Htableware.png" alt="" />
+					<img class="rounded-4" src="../assets/img/HomeCat3.png" alt="" />
 					<p class="text-capitalize fw-semibold fs-6 pt-4">
 						TABLEWARE
 					</p>
@@ -334,9 +334,13 @@ import shop9 from "../assets/img/shop9.png";
 	color: #3a3845;
 }
 .imagescaling {
-	width: 50px;
-	@media screen and (min-width: 992px) {
-		width: unset;
+	width: 50px; 
+}
+
+@media screen and (min-width: 992px) {
+	.imagescaling {
+		width: unset; /* desktop scaling */
+	
 	}
 }
 </style>

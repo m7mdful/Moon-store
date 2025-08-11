@@ -317,7 +317,8 @@
             class="col-6 col-md-6 col-lg-4 d-flex justify-content-center"
           >
             <productCard
-              :imgSrc="product.imgSrc"
+              :id="product.id"
+              :imgSrc="product.imgSrc[0]"
               :title="product.title"
               :price="product.price"
               :description="product.description"
@@ -377,30 +378,9 @@
 <script setup>
 import { ref, computed, watch } from "vue";
 import productCard from "../components/productCard.vue";
-import card1 from "../assets/img/shop1.png";
-import card2 from "../assets/img/shop2.png";
-import card3 from "../assets/img/shop3.png";
-import card4 from "../assets/img/shop4.png";
-import card5 from "../assets/img/shop5.png";
-import card6 from "../assets/img/shop6.png";
-import card7 from "../assets/img/shop7.png";
-import card8 from "../assets/img/shop8.png";
-import card9 from "../assets/img/shop9.png";
+import { products } from "../dData.js";
 
-const products = [
-  { id: 1, imgSrc: card1, title: "Mini Tasting Plate", price: 8, description: "Small appetizer plate ideal for sauces or tasting bites.", category: "dinnerwave", color: "white", tags: ["Mini", "Set"] },
-  { id: 2, imgSrc: card2, title: "Everyday Dessert Plate", price: 22, description: "Lightweight daily-use plate sized for cake or fruit.", category: "ceramic", color: "#CCD8CE", tags: ["Everyday", "Classic"] },
-  { id: 3, imgSrc: card3, title: "Rustic Side Plate", price: 32, description: "Matte finish with subtle rim texture for casual dining.", category: "furniture", color: "#C69B7B", tags: ["Rustic", "Casual"] },
-  { id: 4, imgSrc: card4, title: "Studio Snack Plate", price: 48, description: "Clean studio look; perfect for small bites or desserts.", category: "decorart", color: "#9B92A1", tags: ["Minimal", "Snack"] },
-  { id: 5, imgSrc: card5, title: "Host Dinner Plate", price: 72, description: "Generous surface for main courses; host-ready durability.", category: "dinnerwave", color: "white", tags: ["Hosting", "Dinner"] },
-  { id: 6, imgSrc: card6, title: "Art Glaze Sharing Plate", price: 85, description: "Hand-glaze look with soft edge pooling; shareable size.", category: "decorart", color: "#B4555D", tags: ["Art", "Share"] },
-  { id: 7, imgSrc: card7, title: "Stackable Lunch Plate", price: 99, description: "Space-saving stackable profile for compact kitchens.", category: "ceramic", color: "#CCD8CE", tags: ["Stackable", "Lunch"] },
-  { id: 8, imgSrc: card8, title: "Gift Boxed Plate Duo", price: 129, description: "Pair of plates in a ready-to-wrap gift box set.", category: "giftsets", color: "#C69B7B", tags: ["Gift", "Duo"] },
-  { id: 9, imgSrc: card9, title: "Chef Presentation Plate", price: 155, description: "Wide plating area for chef-style presentation at home.", category: "dinnerwave", color: "white", tags: ["Chef", "Presentation"] },
-  { id: 10, imgSrc: card3, title: "Heritage Serving Charger", price: 180, description: "Oversized charger plate anchors layered table settings.", category: "furniture", color: "#B4555D", tags: ["Centerpiece", "Serve"] },
-  { id: 11, imgSrc: card4, title: "Limited Edition Art Plate", price: 245, description: "Numbered run; hand-detailed rim pattern for collectors.", category: "decorart", color: "#9B92A1", tags: ["Limited", "Art"] },
-  { id: 12, imgSrc: card5, title: "Premium Celebration Set Plate", price: 325, description: "Premium glaze and weight; designed for special occasions.", category: "giftsets", color: "#C69B7B", tags: ["Premium", "Occasion"] },
-];
+//colors
 
 // filter 
 const selectedCategories = ref([]);
@@ -547,25 +527,22 @@ const totalPages = computed(() => Math.ceil(filteredProducts.value.length / item
 
 
 // Categories for filters
-const categories = [
-  { id: "dinnerwave", name: "DinnerWave" },
-  { id: "ceramic", name: "Ceramic" },
-  { id: "furniture", name: "Furniture" },
-  { id: "decorart", name: "Decor Art" },
-  { id: "giftsets", name: "Gift Sets" },
-];
+const categories = computed(() => {
+  const cats = [...new Set(products.map(p => p.category))];
+  return cats.map(cat => ({
+    id: cat,
+    name: cat.charAt(0).toUpperCase() + cat.slice(1)
+  }));
+});
 
-const tags = [
-  { id: "mini", name: "Mini" },
-  { id: "set", name: "Set" },
-  { id: "everyday", name: "Everyday" },
-  { id: "classic", name: "Classic" },
-  { id: "rustic", name: "Rustic" },
-  { id: "snack", name: "Snack" },
-  { id: "elegant", name: "Elegant" },
-  { id: "modern", name: "Modern" },
-  { id: "serving", name: "Serving" },
-];
+const tags = computed(() => {
+  const allTags = products.flatMap(p => p.tags || []);
+  const uniqueTags = [...new Set(allTags)];
+  return uniqueTags.map(tag => ({
+    id: tag.toLowerCase(),
+    name: tag
+  }));
+});
 
 
 // Price ranges for filters

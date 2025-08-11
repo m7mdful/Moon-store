@@ -1,7 +1,7 @@
 <!-- Mohammed Al Naji -->
 <script setup>
 import productCard from "../components/productCard.vue";
-import shop9 from "../assets/img/shop9.png";
+import { products } from '../dData.js';
 </script>
 
 <template>
@@ -109,54 +109,15 @@ import shop9 from "../assets/img/shop9.png";
 			<div
 				class="d-flex flex-wrap justify-content-center align-content-center p-lg-2 p-1"
 				style="gap: 15px"
-			>
-				<productCard
-					:imgSrc="shop9"
-					title="Marin White Dinner Plate"
-					price="30.50"
-					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
-				/>
-				<productCard
-					:imgSrc="shop9"
-					title="Marin White Dinner Plate"
-					price="30.50"
-					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
-				/>
-				<productCard
-					:imgSrc="shop9"
-					title="Marin White Dinner Plate"
-					price="30.50"
-					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
-				/>
-				<productCard
-					:imgSrc="shop9"
-					title="Marin White Dinner Plate"
-					price="30.50"
-					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
-				/>
-				<productCard
-					:imgSrc="shop9"
-					title="Marin White Dinner Plate"
-					price="30.50"
-					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
-				/>
-				<productCard
-					:imgSrc="shop9"
-					title="Marin White Dinner Plate"
-					price="30.50"
-					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
-				/>
-				<productCard
-					:imgSrc="shop9"
-					title="Marin White Dinner Plate"
-					price="30.50"
-					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
-				/>
-				<productCard
-					:imgSrc="shop9"
-					title="Marin White Dinner Plate"
-					price="30.50"
-					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+			> 
+			  <productCard
+				v-for="product in products.slice(0, 8)"
+				:key="product.id"
+				:id="product.id"
+				:imgSrc="product.imgSrc[0]"
+				:title="product.title"
+				:price="product.price"
+				:description="product.description"
 				/>
 			</div>
 			<div>
@@ -238,28 +199,13 @@ import shop9 from "../assets/img/shop9.png";
 				style="gap: 15px"
 			>
 				<productCard
-					:imgSrc="shop9"
-					title="Marin White Dinner Plate"
-					price="30.50"
-					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
-				/>
-				<productCard
-					:imgSrc="shop9"
-					title="Marin White Dinner Plate"
-					price="30.50"
-					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
-				/>
-				<productCard
-					:imgSrc="shop9"
-					title="Marin White Dinner Plate"
-					price="30.50"
-					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
-				/>
-				<productCard
-					:imgSrc="shop9"
-					title="Marin White Dinner Plate"
-					price="30.50"
-					description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+				v-for="product in products.slice(0, 4)"
+				:key="product.id"
+				:id="product.id"
+				:imgSrc="product.imgSrc[0]"
+				:title="product.title"
+				:price="product.price"
+				:description="product.description"
 				/>
 			</div>
 			<div

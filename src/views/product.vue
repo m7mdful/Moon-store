@@ -1,39 +1,56 @@
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { ref, computed, watch } from "vue";
+import { useRoute, useRouter, RouterLink } from "vue-router";
+import { products } from "../dData.js";
 import productCard from "../components/productCard.vue";
-import shop9 from "../assets/img/shop9.png";
-import shop5 from "../assets/img/shop5.png";
-import shop2 from "../assets/img/shop2.png";
-import shop1 from "../assets/img/shop1.png";
 
+const route = useRoute();
 const router = useRouter();
 
-const productImages = [shop9, shop5, shop2, shop1];
-const currentImageIndex = ref(0);
+const productId = ref(route.params.id);
 
-const selectedColor = ref("Blue");
+const product = computed(() =>
+  products.find((p) => p.id == productId.value)
+);
+
+const currentImageIndex = ref(0);
+const selectedColor = ref("");
 const quantity = ref(1);
 const isFavorite = ref(false);
 const showModal = ref(false);
 
+// تحديث القيم عند تغيير المنتج
+watch(product, (newProd) => {
+  if (newProd) {
+    selectedColor.value = newProd.color?.[0] || "";
+    currentImageIndex.value = 0;
+    quantity.value = 1;
+    isFavorite.value = false;
+  }
+});
+
+// تحكم في الصور
 function changeImage(index) {
   currentImageIndex.value = index;
 }
 function nextImage() {
+  if (!product.value) return;
   currentImageIndex.value =
-    (currentImageIndex.value + 1) % productImages.length;
+    (currentImageIndex.value + 1) % product.value.imgSrc.length;
 }
 function prevImage() {
+  if (!product.value) return;
   currentImageIndex.value =
-    (currentImageIndex.value - 1 + productImages.length) %
-    productImages.length;
+    (currentImageIndex.value - 1 + product.value.imgSrc.length) %
+    product.value.imgSrc.length;
 }
 
-function selectColor(name) {
-  selectedColor.value = name;
+// اختيار اللون
+function selectColor(color) {
+  selectedColor.value = color;
 }
 
+// التحكم بالكمية
 function increaseQty() {
   quantity.value++;
 }
@@ -41,35 +58,50 @@ function decreaseQty() {
   if (quantity.value > 1) quantity.value--;
 }
 
+// تفضيلات المستخدم
 function toggleFavorite() {
   isFavorite.value = !isFavorite.value;
 }
 
+// إضافة للسلة مع عرض المودال
 function addToCart() {
   showModal.value = true;
 }
-
 function closeModal() {
   showModal.value = false;
 }
-
 function goToCart() {
   closeModal();
   router.push("/cart");
 }
+
+// تحديث المنتج لو تغير المعرف في الرابط
+watch(
+  () => route.params.id,
+  (newId) => {
+    productId.value = newId;
+  }
+);
+
+// قائمة المنتجات المشابهة (4 منتجات مختلفة عن المنتج الحالي)
+const similarItems = computed(() =>
+  products.filter(p => p.id != product.value?.id).slice(0, 4)
+);
 </script>
 
 <template>
-  <div class="container">
-    <nav aria-label="breadcrumb " style="margin-left: 25px;">
+  <div v-if="product" class="container">
+    <nav aria-label="breadcrumb" style="margin-left: 25px;">
       <ol class="breadcrumb fs-6 mb-5">
-        <li class="breadcrumb-item active" aria-current="page">
+        <li class="breadcrumb-item">
           <RouterLink to="/">Home</RouterLink>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">
-          <RouterLink to="/Shop">Shop</RouterLink>
+        <li class="breadcrumb-item">
+          <RouterLink to="/shop">Shop</RouterLink>
         </li>
-        <li class="breadcrumb-item" aria-current="page">Product</li>
+        <li class="breadcrumb-item active" aria-current="page">
+          {{ product.title }}
+        </li>
       </ol>
     </nav>
 
@@ -77,8 +109,9 @@ function goToCart() {
       class="d-flex flex-lg-row flex-column align-content-center justify-content-center mt-5"
       style="gap: 80px;"
     >
+      <!-- صور المنتج -->
       <div class="d-flex flex-column">
-        <div class="d-flex  ms-lg-5 justify-content-center position-relative">
+        <div class="d-flex ms-lg-5 justify-content-center position-relative">
           <button
             class="position-absolute top-50 start-0 translate-middle-y bg-transparent border-0 arrow-button"
             style="font-size: 28px; line-height: 1; padding: 4px;"
@@ -90,8 +123,8 @@ function goToCart() {
 
           <img
             class="imagscaling d-flex justify-content-center"
-            :src="productImages[currentImageIndex]"
-            alt="Product image"
+            :src="product.imgSrc[currentImageIndex]"
+            :alt="product.title"
           />
 
           <button
@@ -106,7 +139,7 @@ function goToCart() {
 
         <div class="d-flex flex-row gap-4 justify-content-center mt-3">
           <button
-            v-for="(img, index) in productImages"
+            v-for="(img, index) in product.imgSrc"
             :key="index"
             class="bg-transparent border-0 p-0"
             @click="changeImage(index)"
@@ -122,17 +155,18 @@ function goToCart() {
         </div>
       </div>
 
+      <!-- تفاصيل المنتج -->
       <div class="d-flex flex-column text-start text-lg-start">
-        <p class="fs-4 fw-semibold">MARIN WHITE DINNER PLATE</p>
+        <p class="fs-4 fw-semibold">{{ product.title }}</p>
         <div
           class="d-flex flex-row justify-content-lg-start justify-content-around gap-4 align-items-center fs-6"
         >
-          <img class="mb-3" src="../assets/star.svg" alt="" />
-          <p>(1256 Reviews)</p>
+          <img class="mb-3" src="../assets/star.svg" alt="Star rating" />
+          <p>({{ product.reviewsCount }} Reviews)</p>
           <p>Stock: <span style="color: #c69b7b">In stock</span></p>
         </div>
         <div class="d-flex gap-2 fs-5">
-          <p>$35</p>
+          <p>${{ product.price }}</p>
           <p class="text-decoration-line-through">$50</p>
         </div>
 
@@ -144,38 +178,12 @@ function goToCart() {
         <div class="d-flex gap-2">
           <div class="d-flex gap-2 mb-3">
             <span
-              class="border-black bg-white border"
-              :class="{ 'selected-swatch': selectedColor === 'White' }"
-              style="width: 36px; height: 36px; cursor:pointer;"
-              @click="selectColor('White')"
-            ></span>
-
-            <span
-              class="border-black bg-secondary border"
-              :class="{ 'selected-swatch': selectedColor === 'Gray' }"
-              style="width: 36px; height: 36px; cursor:pointer;"
-              @click="selectColor('Gray')"
-            ></span>
-
-            <span
-              class="border-black bg-primary border"
-              :class="{ 'selected-swatch': selectedColor === 'Blue' }"
-              style="width: 36px; height: 36px; cursor:pointer;"
-              @click="selectColor('Blue')"
-            ></span>
-
-            <span
-              class="border-black bg-danger border"
-              :class="{ 'selected-swatch': selectedColor === 'Red' }"
-              style="width: 36px; height: 36px; cursor:pointer;"
-              @click="selectColor('Red')"
-            ></span>
-
-            <span
-              class="border-black bg-success mb-5 border"
-              :class="{ 'selected-swatch': selectedColor === 'Green' }"
-              style="width: 36px; height: 36px; cursor:pointer;"
-              @click="selectColor('Green')"
+              v-for="color in product.color"
+              :key="color"
+              class="border-black border"
+              :style="{ cursor: 'pointer', width: '36px', height: '36px', backgroundColor: color }"
+              :class="{ 'selected-swatch': selectedColor === color }"
+              @click="selectColor(color)"
             ></span>
           </div>
         </div>
@@ -206,25 +214,21 @@ function goToCart() {
 
           <div class="d-flex flex-row gap-2">
             <button
-              class="btn btn-light "
-              style="
-                width: 457px;
-                height: 48px;
-                border: 1px solid #3a3845;
-              "
+              class="btn btn-light"
+              style="width: 457px; height: 48px; border: 1px solid #3a3845;"
             >
               BUY NOW
             </button>
             <button
-              class="bg-transparent "
-              style="
-                width: 48px;
-                height: 48px;
-                border: 1px solid #3a3845;
-              "
+              class="bg-transparent"
+              style="width: 48px; height: 48px; border: 1px solid #3a3845;"
               @click="toggleFavorite"
             >
-              <img v-if="!isFavorite" src="../assets/heart.svg" alt="Add to favorite" />
+              <img
+                v-if="!isFavorite"
+                src="../assets/heart.svg"
+                alt="Add to favorite"
+              />
               <i
                 v-else
                 class="bi bi-heart-fill"
@@ -234,11 +238,12 @@ function goToCart() {
           </div>
         </div>
 
-        <div
-          class="d-flex flex-column gap-2 mt-5 w-100"
-        >
-          <p class="fw-semibold fs-5 text-start ">Share this</p>
-          <div class="d-flex flex-row gap-4 justify-content-start justify-content-lg-start">
+        <!-- مشاركة المنتج -->
+        <div class="d-flex flex-column gap-2 mt-5 w-100">
+          <p class="fw-semibold fs-5 text-start">Share this</p>
+          <div
+            class="d-flex flex-row gap-4 justify-content-start justify-content-lg-start"
+          >
             <i class="bi bi-facebook" style="color: #c69b7b; font-size: 20px"></i>
             <i class="bi bi-twitter-x" style="color: #c69b7b; font-size: 20px"></i>
             <i class="bi bi-instagram" style="color: #c69b7b; font-size: 20px"></i>
@@ -262,10 +267,7 @@ function goToCart() {
             </button>
             <div class="collapse mx-3" id="one" style="width: 360px">
               <p class="fs-5 text-muted text-wrap">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-                quidem enim porro quo explicabo doloremque, reiciendis culpa
-                dolore non veniam ratione, maiores laborum natus repudiandae
-                eligendi accusamus quod magni. Rem.
+                {{ product.details }}
               </p>
             </div>
             <button
@@ -281,10 +283,8 @@ function goToCart() {
             </button>
             <div class="collapse mx-3" id="two" style="width: 360px">
               <p class="text-wrap text-muted fs-5">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-                quidem enim porro quo explicabo doloremque, reiciendis culpa
-                dolore non veniam ratione, maiores laborum natus repudiandae
-                eligendi accusamus quod magni. Rem.
+                Width: {{ product.dmns?.wth }} cm <br />
+                Height: {{ product.dmns?.hht }} cm
               </p>
             </div>
             <button
@@ -300,10 +300,7 @@ function goToCart() {
             </button>
             <div class="collapse mx-3" id="three" style="width: 360px">
               <p class="text-wrap text-muted fs-5">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-                quidem enim porro quo explicabo doloremque, reiciendis culpa
-                dolore non veniam ratione, maiores laborum natus repudiandae
-                eligendi accusamus quod magni. Rem.
+                {{ product.reviewsText || "No reviews available." }}
               </p>
             </div>
           </div>
@@ -312,7 +309,7 @@ function goToCart() {
     </div>
 
     <div class="d-flex flex-column gap-2" style="margin: 60px 0px">
-      <h2 class="fs-3 fw-semibold mb-5 ps-lg-5 ps-0 text-start text-lg-start" >
+      <h2 class="fs-3 fw-semibold mb-5 ps-lg-5 ps-0 text-start text-lg-start">
         SIMILAR ITEMS
       </h2>
       <div
@@ -320,49 +317,20 @@ function goToCart() {
         style="gap: 30px"
       >
         <productCard
-          :imgSrc="shop9"
-          title="Marin White Dinner Plate"
-          price="30.50"
-          description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
-        />
-        <productCard
-          :imgSrc="shop9"
-          title="Marin White Dinner Plate"
-          price="30.50"
-          description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
-        />
-        <productCard
-          :imgSrc="shop9"
-          title="Marin White Dinner Plate"
-          price="30.50"
-          description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
-        />
-        <productCard
-          :imgSrc="shop9"
-          title="Marin White Dinner Plate"
-          price="30.50"
-          description="Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit."
+          v-for="item in similarItems"
+          :key="item.id"
+          :id="item.id"
+          :imgSrc="item.imgSrc[0]"
+          :title="item.title"
+          :price="item.price"
+          :description="item.description"
         />
       </div>
     </div>
+  </div>
 
-    <!-- مودال الإضافة إلى السلة -->
-    <div
-      v-if="showModal"
-      class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex justify-content-center align-items-center"
-      style="z-index: 1050;"
-      @click.self="closeModal"
-    >
-      <div class="bg-white p-4 rounded text-center" style="min-width: 300px;">
-        <p class="mb-4 fw-bold fs-5">Product added to cart!</p>
-        <button class="btn btn-dark me-2 fs-7" @click="goToCart">
-        Go to Cart      
-        </button>
-        <button class="btn btn-outline-secondary fs-7" @click="closeModal">
-             Continue Shopping
-        </button>
-      </div>
-    </div>
+  <div v-else class="text-center mt-5">
+    <p>Product not found.</p>
   </div>
 </template>
 

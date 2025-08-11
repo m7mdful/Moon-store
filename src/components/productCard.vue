@@ -13,7 +13,7 @@
     >
       <!-- Image -->
       <img
-        :src="imgSrc"
+        :src="displayImage"
         class="card-img-top"
         :alt="title"
         :style="{
@@ -75,10 +75,26 @@ import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 const props = defineProps({
-  imgSrc: String,
-  title: String,
-  price: String,
-  description: String
+    id: {
+    type: [Number, String],
+    required: true
+  },
+  imgSrc: {
+    type: [String, Array],
+    required: true
+  },
+  title: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: [String, Number],
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  }
 })
 
 const isMobile = ref(window.matchMedia('(max-width: 768px)').matches)
@@ -112,8 +128,13 @@ const cardWidth = computed(() => (isMobile.value ? '170px' : '255px'))
 const cardHeight = computed(() => (isMobile.value ? '400px' : '500px'))
 const imageHeight = computed(() => (isMobile.value ? '240px' : '321px'))
 
+const displayImage = computed(() => {
+  return Array.isArray(props.imgSrc) ? props.imgSrc[0] : props.imgSrc
+})
+
+
 const goToProduct = () => {
-  router.push('/product')
+  router.push(`/product/${props.id}`)
 }
 
 const addToCart = () => {

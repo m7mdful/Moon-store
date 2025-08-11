@@ -1,5 +1,14 @@
 <!-- Abdllah AlBattat -->
-<script setup></script>
+<script setup>
+import ceo from "../assets/img/ceo.png";
+import atist from "../assets/img/atist.png";
+const cards = [
+  { src: ceo, name: "BERNIE PATTERSON", postion: "CEO & Founder" },
+  { src: atist, name: "CORBIN HOSSAIN", postion: "Artist" },
+  { src: ceo, name: "BERNIE PATTERSON", postion: "CEO & Founder" },
+  { src: atist, name: "CORBIN HOSSAIN", postion: "Artist" },
+];
+</script>
 
 <template>
   <!-- main section -->
@@ -169,47 +178,10 @@
         class="d-flex flex-row flex-nowrap justify-content-md-center gap-lg-5 gap-4"
       >
         <!-- img -->
-        <div class="">
-          <img
-            src="../assets/img/ceo.png"
-            alt=""
-            style="width: 255px; height: 382"
-          />
-          <p class="text-capitalize fw-semibold fs-6 pt-4">BERNIE PATTERSON</p>
-          <p class="fs-6 text-grey">CEO & Founder</p>
-        </div>
-
-        <!-- img -->
-        <div class="">
-          <img
-            src="../assets/img/atist.png"
-            alt=""
-            style="width: 255px; height: 382"
-          />
-          <p class="text-capitalize fw-semibold fs-6 pt-4">CORBIN HOSSAIN</p>
-          <p class="fs-6 text-grey">Artist</p>
-        </div>
-
-        <!-- img -->
-        <div class="">
-          <img
-            src="../assets/img/ceo.png"
-            alt=""
-            style="width: 255px; height: 382"
-          />
-          <p class="text-capitalize fw-semibold fs-6 pt-4">BERNIE PATTERSON</p>
-          <p class="fs-6 text-grey">CEO & Founder</p>
-        </div>
-
-        <!-- img -->
-        <div class="">
-          <img
-            src="../assets/img/atist.png"
-            alt=""
-            style="width: 255px; height: 382"
-          />
-          <p class="text-capitalize fw-semibold fs-6 pt-4">CORBIN HOSSAIN</p>
-          <p class="fs-6 text-grey">Artist</p>
+        <div class="" v-for="(card, index) in cards" :key="index">
+          <img :src="card.src" alt="" style="width: 255px; height: 382" />
+          <p class="text-capitalize fw-semibold fs-6 pt-4">{{ card.name }}</p>
+          <p class="fs-6 text-grey">{{ card.postion }}</p>
         </div>
       </div>
     </div>

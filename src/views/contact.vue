@@ -1,48 +1,62 @@
 <!-- Abdllah AlBattat -->
-<script setup></script>
+<script setup>
+const icons = [
+  {
+    src: "bi-facebook",
+    alt: "facebook icon",
+  },
+  {
+    src: "bi-twitter-x",
+    alt: "twitter icon",
+  },
+  {
+    src: "bi-instagram",
+    alt: "instagram icon",
+  },
+  {
+    src: "bi-linkedin",
+    alt: "linkedin icon",
+  },
+];
+</script>
 
 <template>
-  <section class="section1-bg w-100 d-flex justify-content-center align-items-center">
+  <section
+    class="section1-bg w-100 d-flex justify-content-center align-items-center"
+  >
     <!-- Large Screens only-->
     <div class="d-none d-md-flex w-75 justify-content-start">
-      <div class="section1-content d-flex justify-content-center align-items-center text-center ">
-          <!-- icon with text -->
-          <div>
-            <img
-              src="../assets/Icon-brown.svg"
-              alt="moon icon"
-              class="img-fluid mb-4"
-            />
-            <p class="contact-text fs-1 text-white fw-bold border-bottom border-white border-1 pb-4 mb-5 mt-3" >
-              CONTACT US
-            </p>
-            <p class="text-white fw-medium  fs-5">Follow us on social media</p>
-            <nav class="d-flex justify-content-center flex-wrap gap-4 mt-4" >
-              <a href="#">
-                <img src="../assets/Facebook.svg" alt="facebook icon" style="width: 16px;height: 16px;"/>
-              </a>
-              <a href="#">
-                <img src="../assets/Twitter.svg" alt="twitter icon" style="width: 16px;height: 16px;"/>
-              </a>
-
-              <a href="#">
-              <img src="../assets/Instagram.svg" alt="instagram icon" style="width: 16px;height: 16px;"/>
-              </a>
-
-              <a href="#">
-                <img src="../assets/LinkedIn.svg" alt="linkedin icon" style="width: 16px;height: 16px;"/>
-              </a>
-
-              <a href="#">
-              <img src="../assets/YouTube.svg" alt="youtube icon" style="width: 16px;height: 16px;"/>
-              </a>
+      <div
+        class="section1-content d-flex justify-content-center align-items-center text-center"
+      >
+        <!-- icon with text -->
+        <div>
+          <img
+            src="../assets/Icon-brown.svg"
+            alt="moon icon"
+            class="img-fluid mb-4"
+          />
+          <p
+            class="contact-text fs-1 text-white fw-bold border-bottom border-white border-1 pb-4 mb-5 mt-3"
+          >
+            CONTACT US
+          </p>
+          <p class="text-white fw-medium fs-5">Follow us on social media</p>
+          <!-- icons list section -->
+          <nav class="d-flex justify-content-center flex-wrap gap-4 mt-4">
+            <a href="#" v-for="(icon, index) in icons" :key="index">
+              <i
+                :class="`bi ${icon.src}`"
+                :alt="icon.alt"
+                style="font-size: 20px; color: #c69b7b"
+              ></i>
+            </a>
           </nav>
         </div>
       </div>
     </div>
   </section>
 
-  
   <!-- Small Screens -->
   <div class="section1-content d-block d-md-none text-center py-5 w-100 h-75">
     <!-- icon with text -->
@@ -54,41 +68,43 @@
       />
       <p
         class="contact-text h1 text-white fw-bold border-bottom border-white border-1 pb-4 mx-auto mb-3 mt-3"
-        style="font-size: 27px;"
+        style="font-size: 27px"
       >
         CONTACT US
       </p>
       <p class="text-white fw-medium mt-4 fs-5">Follow us on social media</p>
 
       <nav class="d-flex justify-content-center flex-wrap gap-3 mt-2">
-        <a href="#"
-          ><img src="../assets/Facebook.svg" alt="facebook icon " style="width: 16px;height: 16px;"
-        /></a>
-        <a href="#"
-          ><img src="../assets/Twitter.svg" alt="twitter icon" style="width: 16px;height: 16px;"
-        /></a>
-        <a href="#"
-          ><img src="../assets/Instagram.svg" alt="instagram icon" style="width: 16px;height: 16px;"
-        /></a>
-        <a href="#"
-          ><img src="../assets/LinkedIn.svg" alt="linkedin icon" style="width: 16px;height: 16px;"
-        /></a>
-        <a href="#"
-          ><img src="../assets/YouTube.svg" alt="youtube icon" style="width: 16px;height: 16px;"
-        /></a>
+        <a href="#" v-for="(icon, index) in icons" :key="index">
+          <i
+            :class="`bi ${icon.src}`"
+            :alt="icon.alt"
+            style="font-size: 20px; color: #c69b7b"
+          ></i>
+        </a>
       </nav>
     </div>
   </div>
-  
 
-  <!-- Section 2 -->
+  <!-- Section 2 - information -->
 
-  <section class="d-flex justify-content-center align-items-center align-content-center mt-5">
+  <section
+    class="d-flex justify-content-center align-items-center align-content-center mt-5"
+  >
     <!-- contact information text -->
     <div class="text-center w-50">
-    <h1 class="fs-1" style="font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';">
-    GET IN TOUCH WITH US</h1>    
-        <p class="text-muted fs-5">
+      <h1
+        class="fs-1"
+        style="
+          font-family: system-ui, -apple-system, 'Segoe UI', Roboto,
+            'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
+            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+            'Noto Color Emoji';
+        "
+      >
+        GET IN TOUCH WITH US
+      </h1>
+      <p class="text-muted fs-5">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi quod
         excepturi labore esse placeat dolorum reprehenderit, ullam ipsam sint
         veniam?
@@ -108,12 +124,12 @@
 
         <p class="text-secondary fw-medium mb-0 mt-4">Location :</p>
         <p class="fw-medium mb-0" style="color: #c69b7b">59 Middle Point Rd</p>
-        <p class="fw-medium pb-3" style="color: #c69b7b">San Francisco, 80412</p>
+        <p class="fw-medium pb-3" style="color: #c69b7b">
+          San Francisco, 80412
+        </p>
       </div>
     </div>
   </section>
-
-
 
   <!-- Section 3 - Form-->
 
@@ -158,7 +174,9 @@
             </div>
 
             <div class="mb-4">
-              <label for="company" class="form-label fw-medium fs-5">Company</label>
+              <label for="company" class="form-label fw-medium fs-5"
+                >Company</label
+              >
               <input
                 type="text"
                 id="company"
@@ -183,13 +201,13 @@
         </div>
         <button
           type="submit"
-          class="send-message-btn btn w-100 text-white my-3 rounded-0 py-2 fw-medium "
+          class="btn btn-primary w-100 text-white my-3 rounded-0 py-2 fw-medium"
         >
           SEND MESSAGE
           <img
             src="../assets/Arrow-Right.svg"
             alt="arrow-right"
-            class="img-fluid mb-1 "
+            class="img-fluid mb-1"
           />
         </button>
       </form>
@@ -234,16 +252,8 @@
   max-width: max-content;
 }
 
-.send-message-btn {
-  background-color: #3a3845;
-  font: 1000;
-  font-size: 12px;
-  letter-spacing: 1.5px;
-}
-
 .input-style {
   border: #3a3845 solid 1.35px;
-  
 }
 @media (max-width: 575.98px) {
   .fs-1 {

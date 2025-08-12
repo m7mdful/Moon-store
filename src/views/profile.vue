@@ -266,7 +266,7 @@ export default {
                     <div class="container">
                         <div class="d-flex justify-content-between w-100">
                             <p class="fs-24 fw-bold text-primary py-3">Personal Information</p>
-                            <button class="btn btn-link text-primary me-5 fs-5" @click="toggleEdit">
+                            <button class="btn btn-link  me-5 fs-4" @click="toggleEdit">
                                 {{ editLabel() }}
                             </button>
                         </div>
@@ -400,7 +400,7 @@ export default {
                 </div>
 
                 <!-- Orders -->
-                <div class="tab-pane fade w-75" id="order-tab" role="tabpanel">
+                <div class="tab-pane fade " id="order-tab" role="tabpanel">
                     <h3 class="fs-24 fw-bold text-primary mb-4 mt-5">My Orders</h3>
                     <div class="container mt-4 d-flex justify-content-center" >
                         
@@ -543,7 +543,7 @@ export default {
                                         <div class="d-flex flex-wrap gap-1">
                                             <button class="btn btn-sm btn-outline-secondary fs-7" @click="editAddress(address)">Edit</button>
                                             <button v-if="!address.isPrimary" class="btn btn-sm btn-outline-primary fs-7" @click="setPrimary(address.id)">Set Primary</button>
-                                            <button v-if="!address.isPrimary" class="btn btn-sm bg-primary text-white fs-7" @click="deleteAddress(address.id)">Delete</button>
+                                            <button v-if="!address.isPrimary" class="btn btn-sm bg-danger text-white fs-7" @click="deleteAddress(address.id)">Delete</button>
                                         </div>
                                     </div>
                                 </div>

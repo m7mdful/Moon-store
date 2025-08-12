@@ -5,6 +5,11 @@ export const bestseller = reactive([]);
 export const newProducts = reactive([]);
 export const user = reactive({})
 
+
+
+
+
+//register user
 export async function registering(userData) {
     try {
         const response = await api.post("/auth/register", userData);
@@ -12,7 +17,10 @@ export async function registering(userData) {
     catch (error) {
         console.error("Registration failed:", error);
     }
+
 }
+
+//log in user
 export async function logging(userData) {
     try {
         const response = await api.post("/auth/login", userData);
@@ -21,6 +29,8 @@ export async function logging(userData) {
         console.error("logging failed:", error);
     }
 }
+
+//get information about user
 export async function getuser(){
     try{
         const response = await api.get("/user");
@@ -31,6 +41,7 @@ export async function getuser(){
     }
 }
 
+//get products by query
 export async function getProducts(query="", object) {
     try {
         const response = await api.get(`/product${query}`);
@@ -38,6 +49,16 @@ export async function getProducts(query="", object) {
         object.push(...response.data.products); // Add new products
     } catch (error) {
         console.error("Error fetching products:", error);
+    }
+}
+
+//change user password
+export async function changePassword(passwordData) {
+    try {
+        const response = await api.put("/user/password", passwordData);
+        console.log("Password changed successfully:", response.data);
+    } catch (error) {
+        console.error("Error changing password:", error);
     }
 }
 

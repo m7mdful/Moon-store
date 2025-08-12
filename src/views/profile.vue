@@ -5,6 +5,7 @@ import { ref, onMounted,computed } from "vue";
 import { getuser } from "../dData.js";
 import {user} from "../dData.js";
 import { useRouter } from "vue-router";
+import { changePassword } from "../dData.js";
 const router = useRouter();
 onMounted(async () => {
 	await getuser();
@@ -16,6 +17,15 @@ onMounted(async () => {
 });
 const firstName = computed(() => user.name?.split(" ")[0] || "");
 const lastName = computed(() => user.name?.split(" ").slice(1).join(" ") || "");
+const newPassword = ref("");
+const passwordChanging = async (newPassword) => {
+  try {
+    await changePassword({ password: newPassword });
+    alert("Password changed successfully");
+  } catch (error) {
+    alert("Failed to change password");
+  }
+};
 
 </script>
 
@@ -186,6 +196,7 @@ const lastName = computed(() => user.name?.split(" ").slice(1).join(" ") || "");
                     padding: 21px 16px 21px 16px;
                     border: 2px solid #3a3845;
                   "
+                  v-model="newPassword"
                 />
               </div>
               <div class="col-12 col-lg-5 text-start p-0 mt-5">
@@ -196,6 +207,7 @@ const lastName = computed(() => user.name?.split(" ").slice(1).join(" ") || "");
                     padding: 21px 16px 21px 16px;
                     border: 2px solid #3a3845;
                   "
+                  @click="passwordChanging(newPassword)"
                 >
                   Change password
                 </button>

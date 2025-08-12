@@ -1,19 +1,38 @@
-<!-- Mohammed Al Naji -->
+<!-- CartPage.vue -->
 <script setup>
+import { reactive, computed } from "vue";
 import cartItem from "../components/cartItem.vue";
-import image from "../assets/img/shop9.png";
+import { cart as initialCart } from "../dData";
+
+// reactive copy so v-model updates re-render
+const cart = reactive(initialCart.map(i => ({ ...i })));
+
+// remove handler
+const removeItem = (id) => {
+  const idx = cart.findIndex(i => i.id === id);
+  if (idx !== -1) cart.splice(idx, 1);
+};
+
+// ---- totals ----
+const DELIVERY_FEE = 15;
+
+const subTotal = computed(() =>
+  cart.reduce((sum, i) => sum + Number(i.price) * Number(i.quantity || 0), 0)
+);
+
+const cartTotal = computed(() => subTotal.value + DELIVERY_FEE);
+
+// currency formatter (change currency if needed)
+const fmt = (n) =>
+  new Intl.NumberFormat(undefined, { style: "currency", currency: "USD" }).format(n);
 </script>
 
 <template>
   <div class="d-flex flex-column gap-4">
     <div class="mb-4">
-      <div
-        class="d-flex flex-column gap-4 justify-content-start align-content-center"
-      >
+      <div class="d-flex flex-column gap-4 justify-content-start align-content-center">
         <div class="container">
-          <div
-            class="d-flex flex-row justify-content-start align-items-start mt-2 fs-6"
-          >
+          <div class="d-flex flex-row justify-content-start align-items-start mt-2 fs-6">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
@@ -23,76 +42,46 @@ import image from "../assets/img/shop9.png";
               </ol>
             </nav>
           </div>
-          <p class="fs-24 fw-semibold my-5">Cart (3 items)</p>
+
+          <p class="fs-24 fw-semibold my-5">Cart ({{ cart.length }} items)</p>
+
           <div class="d-none d-lg-block">
-            <div
-              class="row text-center fs-5 text-white p-1 pt-3 bg-primary justify-content-between rounded-4"
-            >
+            <div class="row text-center fs-5 text-white p-1 pt-3 bg-primary justify-content-between rounded-4">
               <div class="col-auto">
-                <img src="../assets/Trash.svg" alt="" />
+                <img src="../assets/Trash.svg" alt="trash icon" />
               </div>
-              <div class="col-2">
-                <p>PHOTO</p>
-              </div>
-              <div class="col-4">
-                <p>PRODUCT</p>
-              </div>
-              <div class="col-1">
-                <p>PRICE</p>
-              </div>
-              <div class="col-2">
-                <p>QUANTITY</p>
-              </div>
-              <div class="col-2">
-                <p>SUBTOTAL</p>
-              </div>
+              <div class="col-2"><p>PHOTO</p></div>
+              <div class="col-4"><p>PRODUCT</p></div>
+              <div class="col-1"><p>PRICE</p></div>
+              <div class="col-2"><p>QUANTITY</p></div>
+              <div class="col-2"><p>SUBTOTAL</p></div>
             </div>
           </div>
+
+          <!-- Cart Items -->
           <cartItem
-            :image="image"
-            title="PORCELAIN DINNER PLATE (27CM)"
-            price="$59"
-            quantity="1"
-            subtotal="$59"
+            v-for="item in cart"
+            :key="item.id"
+            :id="item.id"
+            :image="item.imgSrc[0]"
+            :title="item.title"
+            :price="item.price"
+            v-model:quantity="item.quantity"
+            :subtotal="item.price * item.quantity"
+            @remove="removeItem(item.id)"
           />
-          <cartItem
-            :image="image"
-            title="PORCELAIN DINNER PLATE (27CM)"
-            price="$59"
-            quantity="1"
-            subtotal="$59"
-          />
-          <cartItem
-            :image="image"
-            title="PORCELAIN DINNER PLATE (27CM)"
-            price="$59"
-            quantity="1"
-            subtotal="$59"
-          />
-          <div
-            class="d-flex flex-wrap justify-content-between align-items-center gap-5"
-          >
-            <div
-              class="d-flex flex-wrap justify-content-center align-items-center gap-2 p-1"
-            >
+
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-5">
+            <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 p-1">
               <input
                 class="p-2 rounded-0"
                 placeholder="Coupon code"
                 type="text"
-                style="
-                  border-style: solid;
-                  border-color: black;
-                  border-width: 1px;
-                "
+                style="border-style: solid; border-color: black; border-width: 1px;"
               />
               <button
                 class="fs-7 fw-semibold bg-primary text-white"
-                style="
-                  border-style: solid;
-                  border-color: black;
-                  border-width: 1px;
-                  padding: 5px 22px;
-                "
+                style="border-style: solid; border-color: black; border-width: 1px; padding: 5px 22px;"
               >
                 APPLY COUPON
               </button>
@@ -100,43 +89,46 @@ import image from "../assets/img/shop9.png";
             <div>
               <button
                 class="fs-7 fw-semibold bg-primary text-white"
-                style="
-                  border-style: solid;
-                  border-color: black;
-                  border-width: 1px;
-                  padding: 5px 22px;
-                "
+                style="border-style: solid; border-color: black; border-width: 1px; padding: 5px 22px;"
               >
                 UPDATE CART
               </button>
             </div>
           </div>
+
+          <!-- Checkout totals -->
           <div class="d-flex flex-row-reverse mt-4">
-            <div
-              class="d-flex flex-column bg-primary text-white p-5 gap-3"
-              style="width: 390px"
-            >
+            <div class="d-flex flex-column bg-primary text-white p-5 gap-3" style="width: 390px">
               <p class="fs-4">Cart totals</p>
+
+              <!-- Subtotal (dynamic) -->
               <div class="fs-6 d-flex flex-row justify-content-between">
                 <p>Subtotal</p>
-                <p>$465.00</p>
+                <p>{{ fmt(subTotal) }}</p>
               </div>
+
+              <!-- Delivery fee (fixed 15) -->
               <div class="fs-6 d-flex flex-row justify-content-between">
-                <p>Cart totals</p>
-                <p>$500.00</p>
+                <p>Delivery</p>
+                <p>{{ fmt(DELIVERY_FEE) }}</p>
               </div>
+
+              <!-- Cart total = Subtotal + Delivery -->
+              <div class="fs-6 d-flex flex-row justify-content-between">
+                <p>Cart total</p>
+                <p>{{ fmt(cartTotal) }}</p>
+              </div>
+
               <div class="d-flex justify-content-center mt-4">
                 <router-link to="/checkout">
-                  <button
-                    class="bg-transparent fw-semibold fs-7 text-white"
-                    style="border: 1px solid white; padding: 8px 90px"
-                  >
+                  <button class="bg-transparent fw-semibold fs-7 text-white" style="border: 1px solid white; padding: 8px 90px">
                     PROCEED TO CHECKOUT
                   </button>
                 </router-link>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -147,7 +139,9 @@ import image from "../assets/img/shop9.png";
 .margining {
   margin-left: 200px;
   margin-right: 200px;
-  @media screen and (max-width: 992px) {
+}
+@media screen and (max-width: 992px) {
+  .margining {
     margin-left: 30px;
     margin-right: 30px;
   }

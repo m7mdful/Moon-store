@@ -244,13 +244,87 @@ const products = [
 ]
 
 const cart = [
-  { id: 1, title: 'Mini Tasting Plate', price: 8, quantity: 2 },
-  { id: 3, title: 'Rustic Side Plate', price: 32, quantity: 1 }
+  { id: 1, title: 'Mini Tasting Plate', price: 8, quantity: 2,imgSrc: [
+      new URL('./assets/img/shop5.png', import.meta.url).href,
+      
+    ] },
+
+  { id: 3, title: 'Rustic Side Plate', price: 32, quantity: 1, imgSrc: [
+      new URL('./assets/img/shop3.png', import.meta.url).href] }
 ]
 
 const wishlist = [
-  { id: 2, title: 'Everyday Dessert Plate', description: 'Lightweight daily-use plate sized for cake or fruit.', price: 22 },
-  { id: 4, title: 'Studio Snack Plate', description: 'Clean studio look; perfect for small bites or desserts.', price: 48 }
+  { id: 2, title: 'Everyday Dessert Plate', description: 'Lightweight daily-use plate sized for cake or fruit.', price: 22, imgSrc: new URL('./assets/img/shop2.png', import.meta.url).href },
+  { id: 4, title: 'Studio Snack Plate', description: 'Clean studio look; perfect for small bites or desserts.', price: 48,imgSrc: new URL('./assets/img/shop4.png', import.meta.url).href },
 ]
+
+export const orders = [
+  {
+    id: 123456,
+    status: 'Delivered',
+    date: '2025-07-15',
+    images: [
+      'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop'
+    ],
+    total: '250 SAR',
+    products: [
+      { image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop', name: 'Wireless Headphones', price: '75 SAR', quantity: 2, subtotal: '150 SAR' },
+      { image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=400&fit=crop', name: 'Phone Case', price: '25 SAR', quantity: 2, subtotal: '50 SAR' },
+      { image: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&fit=crop', name: 'Watch', price: '50 SAR', quantity: 1, subtotal: '50 SAR' }
+    ]
+  },
+  {
+    id: 123457,
+    status: 'Processing',
+    date: '2025-07-18',
+    images: [
+      'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop'
+    ],
+    total: '180 SAR',
+    products: [
+      { image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=400&fit=crop', name: 'Store Items', price: '50 SAR', quantity: 2, subtotal: '100 SAR' },
+      { image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop', name: 'Running Shoes', price: '80 SAR', quantity: 1, subtotal: '80 SAR' }
+    ]
+  },
+  {
+    id: 123458,
+    status: 'Cancelled',
+    date: '2025-07-19',
+    images: [
+      'https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop'
+    ],
+    total: '320 SAR',
+    products: [
+      { image: 'https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=400&h=400&fit=crop', name: 'Laptop', price: '200 SAR', quantity: 1, subtotal: '200 SAR' },
+      { image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&fit=crop', name: 'Mouse', price: '30 SAR', quantity: 2, subtotal: '60 SAR' },
+      { image: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop', name: 'Keyboard', price: '60 SAR', quantity: 1, subtotal: '60 SAR' }
+    ]
+  }
+];
+
+
+export const addresses = [
+  {
+    id: 1,
+    title: 'Home Address',
+    street: '123 King Abdulaziz Rd',
+    city: 'Riyadh, Saudi Arabia',
+    zipCode: '11564',
+    isPrimary: true
+  },
+  {
+    id: 2,
+    title: 'Work Address',
+    street: '456 Prince Sultan St',
+    city: 'Jeddah, Saudi Arabia',
+    zipCode: '21577',
+    isPrimary: false
+  }
+];
 
 export { products, cart, wishlist }

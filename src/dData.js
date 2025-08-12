@@ -254,8 +254,9 @@ const cart = [
 ]
 
 const wishlist = [
-  { id: 2, title: 'Everyday Dessert Plate', description: 'Lightweight daily-use plate sized for cake or fruit.', price: 22, imgSrc: new URL('./assets/img/shop2.png', import.meta.url).href },
+  { id: 2, title: 'Everyday Dessert Plate', description: 'Lightweight daily-use plate sized for cake or fruit.', price: 22, imgSrc: new URL('./assets/img/shop2.png', import.meta.url).href,trashButton: false },
   { id: 4, title: 'Studio Snack Plate', description: 'Clean studio look; perfect for small bites or desserts.', price: 48,imgSrc: new URL('./assets/img/shop4.png', import.meta.url).href },
+  { id: 5, title: 'Studio Snack Plate', description: 'Clean studio look; perfect for small bites or desserts.', price: 48,imgSrc: new URL('./assets/img/shop4.png', import.meta.url).href }
 ]
 
 export const orders = [

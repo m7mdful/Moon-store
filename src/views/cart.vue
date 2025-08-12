@@ -3,6 +3,7 @@
 import { reactive, computed } from "vue";
 import cartItem from "../components/cartItem.vue";
 import { cart as initialCart } from "../dData";
+import cardEmpt from "../components/cardEmpt.vue";
 
 // reactive copy so v-model updates re-render
 const cart = reactive(initialCart.map(i => ({ ...i })));
@@ -45,7 +46,8 @@ const fmt = (n) =>
 
           <p class="fs-24 fw-semibold my-5">Cart ({{ cart.length }} items)</p>
 
-          <div class="d-none d-lg-block">
+          <!-- Table Header - only show when there are items -->
+          <div class="d-none d-lg-block" v-if="cart.length > 0">
             <div class="row text-center fs-5 text-white p-1 pt-3 bg-primary justify-content-between rounded-4">
               <div class="col-auto">
                 <img src="../assets/Trash.svg" alt="trash icon" />
@@ -58,20 +60,29 @@ const fmt = (n) =>
             </div>
           </div>
 
-          <!-- Cart Items -->
-          <cartItem
-            v-for="item in cart"
-            :key="item.id"
-            :id="item.id"
-            :image="item.imgSrc[0]"
-            :title="item.title"
-            :price="item.price"
-            v-model:quantity="item.quantity"
-            :subtotal="item.price * item.quantity"
-            @remove="removeItem(item.id)"
-          />
+          <!-- Cart Items OR Empty State -->
+          <template v-if="cart.length > 0">
+            <cartItem
+              v-for="item in cart"
+              :key="item.id"
+              :id="item.id"
+              :image="item.imgSrc[0]"
+              :title="item.title"
+              :price="item.price"
+              v-model:quantity="item.quantity"
+              :subtotal="item.price * item.quantity"
+              @remove="removeItem(item.id)"
+            />
+          </template>
+          <template v-else>
+            <cardEmpt 
+              msg="Your Cart is empty"
+              smdet="Start exploring and add items you love to your cart!"
+            />
+          </template>
 
-          <div class="d-flex flex-wrap justify-content-between align-items-center gap-5">
+          <!-- Coupon Section - only show when there are items -->
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-5" v-if="cart.length > 0">
             <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 p-1">
               <input
                 class="p-2 rounded-0"
@@ -96,8 +107,8 @@ const fmt = (n) =>
             </div>
           </div>
 
-          <!-- Checkout totals -->
-          <div class="d-flex flex-row-reverse mt-4">
+          <!-- Checkout totals - only show when there are items -->
+          <div class="d-flex flex-row-reverse mt-4" v-if="cart.length > 0">
             <div class="d-flex flex-column bg-primary text-white p-5 gap-3" style="width: 390px">
               <p class="fs-4">Cart totals</p>
 

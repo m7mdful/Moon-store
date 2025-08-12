@@ -21,7 +21,15 @@
           height: imageHeight,
           objectFit: 'cover',
           maxWidth: '100%'
-        }"
+        }" 
+      />
+      <img
+        v-if="trashButton"
+        src="../assets/icons8-delete-100.png"
+        width="25"
+        height="25"
+        class="position-absolute top-0 end-0 m-2 cursor-pointer"
+        @click.stop="$emit('remove', id)"
       />
 
       <!-- Body -->
@@ -94,6 +102,10 @@ const props = defineProps({
   description: {
     type: String,
     required: true
+  },
+  trashButton: {
+    type: Boolean,
+    default: false
   }
 })
 

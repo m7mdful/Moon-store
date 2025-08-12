@@ -17,28 +17,27 @@
     <!-- Wishlist Items -->
     <section class="mb-5 d-flex justify-content-center">
       <div v-if="products.length" class="row gy-5 w-100" style="max-width: 1100px;">
-        <div
-          v-for="product in products"
-          :key="product.id"
-          class="col-6 col-md-4 col-lg-3 d-flex justify-content-start position-relative"
-        >
-          <!-- Delete Button -->
-          <button
-            class="btn position-absolute top-0 end-0 z-3 m-4 p-0 border-0"
-            style="width: 30px; height: 30px"
-            @click="openDeleteModal(product.id)"
-          >
-            <img src="../assets/icons8-delete-100.png" width="28" height="28" />
-          </button>
+        
+         <div class="d-flex flex-wrap justify-content-start align-content-center p-lg-2 p-1"
+              style="gap: 15px">
 
-          <!-- Product Card -->
-          <product-card
+           <!-- Product Card -->
+          <productCard
+            v-for="product in products"
+            :key="product.id"
+            class="col-6 col-md-4 col-lg-3 d-flex justify-content-start position-relative"
+            :id="product.id"
             :imgSrc="product.imgSrc"
             :title="product.title"
             :price="product.price"
             :description="product.description"
-          />
-        </div>
+            :trashButton="true"
+            @remove="openDeleteModal"
+            />
+         </div>
+
+        
+        
       </div>
       <!-- Empty State -->
       <CartEmpt
@@ -129,27 +128,8 @@
 import { ref } from "vue";
 import productCard from "../components/productCard.vue";
 import CartEmpt from "../components/cardEmpt.vue";
-
-import card1 from "../assets/img/shop1.png";
-import card2 from "../assets/img/shop2.png";
-import card3 from "../assets/img/shop3.png";
-import card4 from "../assets/img/shop4.png";
-import card5 from "../assets/img/shop5.png";
-import card6 from "../assets/img/shop6.png";
-import card7 from "../assets/img/shop7.png";
-import card8 from "../assets/img/shop8.png";
-
-// Products
-const products = ref([
-  { id: 1, imgSrc: card1, title: "Small Ecru Ceramic Compote", price: "49.00" },
-  { id: 2, imgSrc: card2, title: "Porcelain Dinner Plate", price: "49.00" },
-  { id: 3, imgSrc: card3, title: "Glass Candle Holder", price: "19.99" },
-  { id: 4, imgSrc: card4, title: "White Dinner Plate", price: "85.00" },
-  { id: 5, imgSrc: card5, title: "Wooden Side Table", price: "129.00" },
-  { id: 6, imgSrc: card6, title: "Art Wall Piece", price: "45.00" },
-  { id: 7, imgSrc: card7, title: "Ceramic Pitcher", price: "39.50" },
-  { id: 8, imgSrc: card8, title: "Linen Cushion", price: "25.00" },
-]);
+import { wishlist } from "../dData.js";
+const products = ref(wishlist);
 
 // Modal State
 const showConfirmModal = ref(false);

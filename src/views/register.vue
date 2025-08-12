@@ -28,7 +28,11 @@
 			</p>
 
 			<!-- Form -->
-			<form class="w-100" style="max-width: 450px">
+			<form
+				class="w-100"
+				style="max-width: 450px"
+				@submit.prevent="handleSubmit"
+			>
 				<div class="mb-3">
 					<label for="name" style="font-size: 24px">Full Name</label>
 					<input
@@ -36,6 +40,7 @@
 						id="name"
 						class="form-control"
 						style="padding: 10px; height: 37px; max-width: 404px"
+						v-model="name"
 					/>
 				</div>
 
@@ -48,6 +53,7 @@
 						id="email"
 						class="form-control"
 						style="padding: 10px; height: 37px; max-width: 404px"
+						v-model="email"
 					/>
 				</div>
 
@@ -60,6 +66,7 @@
 						id="password"
 						class="form-control"
 						style="padding: 10px; height: 37px; max-width: 404px"
+						v-model="password"
 					/>
 				</div>
 
@@ -72,29 +79,28 @@
 						id="confirm"
 						class="form-control"
 						style="padding: 10px; height: 37px; max-width: 404px"
+						v-model="confirmPassword"
 					/>
 				</div>
 
 				<div class="d-grid mb-5 mt-5 text-center">
-					<router-link to="/login">
-						<button
-							type="submit"
-							class="d-flex justify-content-center align-items-center text-white"
-							style="
-								height: 32px;
-								width: 100%;
-								max-width: 404px;
-								font-size: 18px;
-								padding: 10px;
-								border-radius: 10px;
-								border: 1px solid #d9d9d9;
-								background-color: #3a3845;
-								transition: all 0.3s;
-							"
-						>
-							Sign Up
-						</button>
-					</router-link>
+					<button
+						type="submit"
+						class="d-flex justify-content-center align-items-center text-white"
+						style="
+							height: 32px;
+							width: 100%;
+							max-width: 404px;
+							font-size: 18px;
+							padding: 10px;
+							border-radius: 10px;
+							border: 1px solid #d9d9d9;
+							background-color: #3a3845;
+							transition: all 0.3s;
+						"
+					>
+						Sign Up
+					</button>
 				</div>
 
 				<!-- Link to Login -->
@@ -113,5 +119,34 @@
 </template>
 
 <script setup>
-// logic can be added here later
+import { onMounted, ref } from "vue";
+import { registering } from "../dData.js";
+import { useRouter } from "vue-router";
+import {user} from "../dData.js";
+const name = ref("");
+const email = ref("");
+const password = ref("");
+const confirmPassword = ref("");
+const router = useRouter();
+
+
+
+const handleSubmit = async (event) => {
+	event.preventDefault();
+	if (password.value !== confirmPassword.value) {
+		alert("Passwords do not match!");
+		return;
+	}
+	try {
+		const userData = {
+			name: name.value,
+			email: email.value,
+			password: password.value,
+		};
+		console.log(await registering(userData));
+		router.push("/"); // Navigates to home
+	} catch (error) {
+		alert("Registration failed. Please try again.");
+	}
+};
 </script>

@@ -28,7 +28,7 @@
 			</p>
 
 			<!-- Form -->
-			<form class="w-100" style="max-width: 450px">
+			<form class="w-100" style="max-width: 450px" @submit.prevent="handleSubmit">
 				<div class="mb-3">
 					<label for="email" style="font-size: 24px"
 						>Email Address</label
@@ -38,6 +38,7 @@
 						id="email"
 						class="form-control"
 						style="padding: 10px; height: 37px; max-width: 404px"
+						v-model="email"
 					/>
 				</div>
 
@@ -57,6 +58,7 @@
 						id="pass"
 						class="form-control"
 						style="padding: 10px; height: 37px; max-width: 404px"
+						v-model="password"
 					/>
 				</div>
 
@@ -75,7 +77,6 @@
 				</div>
 
 				<div class="d-grid gap-3 mb-4 text-center">
-					<router-link to="/">
 						<button
 							type="submit"
 							class="log-btn d-flex justify-content-center align-items-center gap-2 mb-3 text-white"
@@ -93,7 +94,6 @@
 						>
 							Login
 						</button>
-					</router-link>
 
 					<button
 						type="button"
@@ -152,5 +152,25 @@
 </template>
 
 <script setup>
-// No logic yet
+import { onMounted, ref } from "vue";
+import { logging } from "../dData.js";
+import { useRouter } from "vue-router";
+import {user} from "../dData.js";
+const email = ref("");
+const password = ref("");
+const router = useRouter();
+
+const handleSubmit = async (event) => {
+	event.preventDefault();
+	try {
+		const userData = {
+			email: email.value,
+			password: password.value,
+		};
+		console.log(await logging(userData));
+		router.push("/"); // Navigates to home
+	} catch (error) {
+		alert("Registration failed. Please try again." + error);
+	}
+};
 </script>

@@ -1,6 +1,22 @@
 <!-- Abdllah AlBattat -->
 <script setup>
 import order from "../components/order.vue";
+import { ref, onMounted,computed } from "vue";
+import { getuser } from "../dData.js";
+import {user} from "../dData.js";
+import { useRouter } from "vue-router";
+const router = useRouter();
+onMounted(async () => {
+	await getuser();
+  if (!user.name) {
+    // Redirect to login if user is not logged in
+    window,alert("You need to log in to access");
+    router.push("/");
+  }
+});
+const firstName = computed(() => user.name?.split(" ")[0] || "");
+const lastName = computed(() => user.name?.split(" ").slice(1).join(" ") || "");
+
 </script>
 
 <template>
@@ -42,11 +58,11 @@ import order from "../components/order.vue";
         <!-- content -->
 
         <!-- hedare for personal info -->
-        <dev
+        <div
           v-if="nav == 'per'"
           class="d-flex row list-group-horizontal text-center"
         >
-          <dev class="col-6">
+          <div class="col-6">
             <button
               @click="info = 'per'"
               class="fs-6 fw-semibold bg-transparent border-0 text-primary"
@@ -54,9 +70,9 @@ import order from "../components/order.vue";
               Personal ingormation
             </button>
             <hr class="border-1 border-primary opacity-100" />
-          </dev>
+          </div>
 
-          <dev class="col-6 list-group-item">
+          <div class="col-6 list-group-item">
             <div>
               <button
                 @click="info = 'adr'"
@@ -66,8 +82,8 @@ import order from "../components/order.vue";
               </button>
               <hr class="border-1 border-primary opacity-100" />
             </div>
-          </dev>
-        </dev>
+          </div>
+        </div>
 
         <!-- personali information block -->
         <div class="p-3" v-if="info == 'per'">
@@ -86,6 +102,7 @@ import order from "../components/order.vue";
                     padding: 21px 16px 21px 16px;
                     border: 2px solid #3a3845;
                   "
+                  :value="firstName"
                 />
               </div>
               <div class="col-12 col-lg-5 text-start p-0">
@@ -100,6 +117,7 @@ import order from "../components/order.vue";
                     padding: 21px 16px 21px 16px;
                     border: 2px solid #3a3845;
                   "
+                  :value="lastName"
                 />
               </div>
             </div>
@@ -117,6 +135,7 @@ import order from "../components/order.vue";
                     padding: 21px 16px 21px 16px;
                     border: 2px solid #3a3845;
                   "
+                  :value="user.company"
                 />
               </div>
               <div class="col-12 col-lg-5 text-start p-0">
@@ -131,6 +150,7 @@ import order from "../components/order.vue";
                     padding: 21px 16px 21px 16px;
                     border: 2px solid #3a3845;
                   "
+                  :value="user.phone"
                 />
               </div>
             </div>
@@ -148,6 +168,7 @@ import order from "../components/order.vue";
                     padding: 21px 16px 21px 16px;
                     border: 2px solid #3a3845;
                   "
+                  :value="user.email"
                 />
               </div>
             </div>
@@ -211,6 +232,7 @@ import order from "../components/order.vue";
                     padding: 21px 16px 21px 16px;
                     border: 2px solid #3a3845;
                   "
+                  :value="user.country"
                 />
               </div>
               <div class="col-12 col-lg-5 text-start p-0">
@@ -225,6 +247,7 @@ import order from "../components/order.vue";
                     padding: 21px 16px 21px 16px;
                     border: 2px solid #3a3845;
                   "
+                  :value="user.city"
                 />
               </div>
             </div>
@@ -242,6 +265,7 @@ import order from "../components/order.vue";
                     padding: 21px 16px 21px 16px;
                     border: 2px solid #3a3845;
                   "
+                  :value="user.street"
                 />
               </div>
             </div>
@@ -262,19 +286,19 @@ import order from "../components/order.vue";
         </div>
 
         <!-- heder for My Order -->
-        <dev
+        <div
           v-if="nav == 'ord'"
           class="d-flex row list-group-horizontal text-start"
         >
-          <dev class="col-12">
+          <div class="col-12">
             <button
               class="fs-6 fw-semibold bg-transparent border-0 text-primary"
             >
               My Orders
             </button>
             <hr class="border-1 border-primary opacity-100" />
-          </dev>
-        </dev>
+          </div>
+        </div>
 
         <!-- My order box -->
         <div v-if="info == 'ord'" class="container">
@@ -296,11 +320,7 @@ import order from "../components/order.vue";
               </div>
             </div>
           </div>
-          <order OrderId="123" total="$59" date="2025/12/5" Status="1" />
-          <order OrderId="123" total="$59" date="2025/12/5" Status="2" />
-          <order OrderId="123" total="$59" date="2025/12/5" Status="3" />
-          <order OrderId="123" total="$59" date="2025/12/5" Status="4" />
-          <order OrderId="123" total="$59" date="2025/12/5" Status="5" />
+          <order v-for="order in user.orders" :OrderId="order.orderId" :total="'$'+order.totalPrice" :Status="order.status" :date="order.purchaseDate.split('T')[0]"/>
         </div>
       </div>
     </div>

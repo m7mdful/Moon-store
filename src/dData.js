@@ -1,94 +1,47 @@
-const products = [
-    {
-        id: 1,
-        name: 'Product 1',
-        description: 'Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 1',
-        price: 10.99,
-        quantity: 100,
-        category: 'dinnerWave',
-        color: 'grey',
-        details:'Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 1 Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 1 Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 1',
-        dmns:{
-            wth:12,
-            hht:15
+import { reactive } from "vue";
+import api from "./axios.js";
+export const products = reactive([]);
+export const bestseller = reactive([]);
+export const newProducts = reactive([]);
+export const user = reactive({})
 
-        }
-    },
-    {
-        id: 2,
-        name: 'Product 2',
-        description: 'Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 2',
-        price: 20.50,
-        quantity: 150,
-        category: 'ceramic',
-        color: 'white',
-        details:'Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 1 Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 1 Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 1',
-                dmns:{
-            wth:12,
-            hht:15
-
-        }
-    },
-    {
-        id: 3,
-        name: 'Product 3',
-        description: 'Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 3',
-        price: 5.75,
-        quantity: 200,
-        category: 'furniture',
-        color: 'red',
-        details:'Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 1 Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 1 Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 1',
-                dmns:{
-            wth:12,
-            hht:15
-
-        }
-    },
-    {
-        id: 4,
-        name: 'Product 4',
-        description: 'Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 4',
-        price: 30.00,
-        quantity: 75,
-        category: 'decorArt',
-        color:'black',
-        details:'Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 1 Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 1 Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 1',
-                dmns:{
-            wth:12,
-            hht:15
-
-        }
-        
+export async function registering(userData) {
+    try {
+        const response = await api.post("/auth/register", userData);
     }
-];
-const cart = [
-    {
-        id: 1,
-        name: 'Product 1',
-        price: 10.99,
-        quantity: 2
-    },
-    {
-        id: 3,
-        name: 'Product 3',
-        price: 5.75,
-        quantity: 1
+    catch (error) {
+        console.error("Registration failed:", error);
     }
-];
-
-const wishlist = [
-    {
-        id: 2,
-        name: 'Product 2',
-        description: 'Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 2',
-        price: 20.50
-    },
-    {
-        id: 4,
-        name: 'Product 4',
-        description: 'Lorem ipsum dolor sit amet conse bolli tetur adipiscing elit. 4',
-        price: 30.00
+}
+export async function logging(userData) {
+    try {
+        const response = await api.post("/auth/login", userData);
     }
-];
+    catch (error) {
+        console.error("logging failed:", error);
+    }
+}
+export async function getuser(){
+    try{
+        const response = await api.get("/user");
+        Object.assign(user, response.data);
+    }
+    catch(error){
+        console.error(error);
+    }
+}
 
-export { cart, wishlist,products };
+export async function getProducts(query="", object) {
+    try {
+        const response = await api.get(`/product${query}`);
+        object.length = 0; // Clear the existing products
+        object.push(...response.data.products); // Add new products
+    } catch (error) {
+        console.error("Error fetching products:", error);
+    }
+}
+
+
+
+
+

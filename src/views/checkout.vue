@@ -1,7 +1,20 @@
 <!-- Mohammed Al Naji -->
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from "vue";
 const selectedPaymentMethod = ref('creditCard');
+
+import { getuser } from "../dData.js";
+import {user} from "../dData.js";
+import { useRouter } from "vue-router";
+const router = useRouter();
+onMounted(async () => {
+	await getuser();
+  if (!user.name) {
+    // Redirect to login if user is not logged in
+    window,alert("You need to log in to access");
+    router.push("/");
+  }
+});
 </script>
 
 <template>

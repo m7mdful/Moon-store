@@ -44,7 +44,7 @@
           type="button"
           class="btn text-black border-1 border-black rounded-0 fw-semibold position-relative fs-7"
           :style="{ width: cardWidth, height: '39px' }"
-          @click.stop="addToCart"
+          @click.stop="addItemToCart(props.id)"
         >
           Add to cart
         </button>
@@ -72,14 +72,25 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import { addToCart } from '../dData.js'
 import { useRouter } from 'vue-router'
 
 const props = defineProps({
   imgSrc: String,
   title: String,
   price: String,
-  description: String
+  description: String,
+  id: String,
 })
+const addItemToCart = async (id) => {
+  try {
+    await addToCart(id, 1); 
+    showModal.value = true;
+  
+  } catch (error) {
+    console.error('Error adding to cart:', error);
+  }
+}
 
 const isMobile = ref(window.matchMedia('(max-width: 768px)').matches)
 const showModal = ref(false)
@@ -116,9 +127,6 @@ const goToProduct = () => {
   router.push('/product')
 }
 
-const addToCart = () => {
-  showModal.value = true
-}
 
 const goToCart = () => {
   router.push('/cart')

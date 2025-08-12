@@ -35,7 +35,7 @@
 					<button
 						class="btn position-absolute top-0 end-0 z-3 m-4 p-0 border-0"
 						style="width: 30px; height: 30px"
-						@click="openDeleteModal(item.id)"
+						@click="openDeleteModal(item._id)"
 					>
 						<img
 							src="../assets/icons8-delete-100.png"
@@ -66,7 +66,7 @@
 			<button
 				class="btn btn-dark px-4 py-2 fs-4"
 				style="width: 300px; height: 50px"
-				@click="openCartModal"
+				@click="moveAllToCart(null)"
 			>
 				Add All to Cart
 			</button>
@@ -74,7 +74,7 @@
 			<button
 				class="btn btn-outline-danger d-flex align-items-center justify-content-center gap-2 px-4 py-2"
 				style="width: 300px; height: 50px"
-				@click="openClearAllModal"
+				@click="openClearAllModal(null)"
 			>
 				<img
 					src="../assets/icons8-delete-100.png"
@@ -109,7 +109,7 @@
 						<button
 							type="button"
 							class="btn btn-danger fs-6 px-3"
-							@click="confirmAction"
+							@click="deleteWhishlistItem(selectedProductId)"
 						>
 							Yes, Confirm
 						</button>
@@ -148,8 +148,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { getuser } from "../dData.js";
-import { user } from "../dData.js";
+import { getuser,user,removeFromWhishlist,moveToCart } from "../dData.js";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const lengthh= ref(0);
@@ -163,6 +162,22 @@ onMounted(async () => {
 	}
   lengthh.value = user.whishlist.length;
 });
+
+//delete the item fro mthe whishlist
+
+const deleteWhishlistItem = async (productId) => {
+    await removeFromWhishlist(productId);
+    await getuser(); 
+    lengthh.value = user.whishlist.length;
+    closeModal();
+};
+//move all items to the cart
+const moveAllToCart = async (productId) => {
+	await moveToCart(productId);
+	await getuser();
+	lengthh.value = user.whishlist.length;
+	closeModal();
+};
 
 
 
@@ -211,9 +226,8 @@ function openDeleteModal(id) {
 	showConfirmModal.value = true;
 }
 
-function openClearAllModal() {
-	selectedProductId.value = null;
-	isClearAll.value = true;
+function openClearAllModal(id) {
+	selectedProductId.value = id;
 	modalMessage.value = "Are you sure you want to clear your entire wishlist?";
 	showConfirmModal.value = true;
 }
@@ -237,4 +251,5 @@ function confirmAction() {
 	}
 	closeModal();
 }
+
 </script>

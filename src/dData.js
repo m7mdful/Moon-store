@@ -40,6 +40,77 @@ export async function getuser(){
         console.error(error);
     }
 }
+//change user password
+export async function changePassword(passwordData) {
+    try {
+        const response = await api.put("/user/password", passwordData);
+        console.log("Password changed successfully:", response.data);
+    } catch (error) {
+        console.error("Error changing password:", error);
+    }
+}
+// remove from cart
+export async function removeFromCart(productId) {
+    try {
+        const response = await api.put("/user/remove-from-cart", { productId });
+        Object.assign(user, response.data);
+        console.log("Item removed from cart successfully:", response.data);
+    } catch (error) {
+        console.error("Error removing item from cart:", error);
+    }
+}
+// update cart item quantity 
+export async function updateCartQuantity(productId, quantity) {
+    try {
+        const response = await api.put("/user/update-cart-quantity", { productId, quantity });
+        Object.assign(user, response.data);
+        console.log("Cart quantity updated successfully:", response.data);
+    } catch (error) {
+        console.error("Error updating cart quantity:", error);
+    }
+}
+
+//delete an item from the whishlist
+export async function removeFromWhishlist(productId) {
+    try {
+        const response = await api.put("/user/remove-from-whishlist", { productId });
+        Object.assign(user, response.data); 
+        console.log("Item removed from whishlist successfully:", response.data);
+    } catch (error) {
+        console.error("Error removing item from whishlist:", error);
+    }
+}
+// move item from wishlist to cart
+export async function moveToCart(productId) {
+    try {
+        const response = await api.put("/user/move-to-cart", { productId });
+        Object.assign(user, response.data);
+        console.log("Item moved to cart successfully:", response.data);
+    } catch (error) {
+        console.error("Error moving item to cart:", error);
+    }
+}
+//add to cart
+export async function addToCart(productId, quantity) {
+    try {
+        const response = await api.put("/user/add-to-cart", { productId, quantity });
+        Object.assign(user, response.data);
+        console.log("Item added to cart successfully:", response.data);
+    } catch (error) {
+        console.error("Error adding item to cart:", error);
+    }
+}
+
+//save user information
+export async function updateUserInfo(userData) {
+    try {
+        const response = await api.put("/user", userData);
+        Object.assign(user, response.data);
+        console.log("User information saved successfully:", response.data);
+    } catch (error) {
+        console.error("Error saving user information:", error);
+    }
+}
 
 //get products by query
 export async function getProducts(query="", object) {
@@ -51,17 +122,6 @@ export async function getProducts(query="", object) {
         console.error("Error fetching products:", error);
     }
 }
-
-//change user password
-export async function changePassword(passwordData) {
-    try {
-        const response = await api.put("/user/password", passwordData);
-        console.log("Password changed successfully:", response.data);
-    } catch (error) {
-        console.error("Error changing password:", error);
-    }
-}
-
 
 
 

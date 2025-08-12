@@ -2,7 +2,7 @@
 <script setup>
 import cartItem from "../components/cartItem.vue";
 import image from "../assets/img/shop9.png";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { getuser } from "../dData.js";
 import { user } from "../dData.js";
 import { useRouter } from "vue-router";
@@ -14,6 +14,21 @@ onMounted(async () => {
 		window, alert("You need to log in to access");
 		router.push("/");
 	}
+});
+
+
+const cartTotal = computed(() => {
+	if (!user.cart || !Array.isArray(user.cart)) {
+		return 0;
+	}
+	return user.cart.reduce((total, item) => {
+		return total + (item.product?.price || 0) * (item.quantity || 0);
+	}, 0);
+});
+
+
+const cartLength = computed(() => {
+	return user.cart?.length || 0;
 });
 </script>
 
@@ -41,7 +56,7 @@ onMounted(async () => {
 							</ol>
 						</nav>
 					</div>
-					<p class="fs-24 fw-semibold my-5">Cart (3 items)</p>
+					<p class="fs-24 fw-semibold my-5">Cart (<span>{{ cartLength }}</span> items)</p>
 					<div class="d-none d-lg-block">
 						<div
 							class="row text-center fs-5 text-white p-1 pt-3 bg-primary justify-content-between rounded-4"
@@ -73,6 +88,7 @@ onMounted(async () => {
 						:price="item.product.price"
 						:quantity="item.quantity"
 						:subtotal="item.product.price * item.quantity"
+						:id="item._id"
 					/>
 					<div
 						class="d-flex flex-wrap justify-content-between align-items-center gap-5"
@@ -126,13 +142,13 @@ onMounted(async () => {
 								class="fs-6 d-flex flex-row justify-content-between"
 							>
 								<p>Subtotal</p>
-								<p>$465.00</p>
+								<p>${{ cartTotal.toFixed(2) }}</p>
 							</div>
 							<div
 								class="fs-6 d-flex flex-row justify-content-between"
 							>
 								<p>Cart totals</p>
-								<p>$500.00</p>
+								<p>${{ cartTotal.toFixed(2) }}</p>
 							</div>
 							<div class="d-flex justify-content-center mt-4">
 								<router-link to="/checkout">

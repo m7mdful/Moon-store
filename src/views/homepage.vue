@@ -146,6 +146,7 @@ onMounted(async () => {
 						:title="product.title"
 						:price="product.price.toString()"
 						:description="product.description"
+						:id="product._id"
 					/>
 				</div>
 				<div>
@@ -234,6 +235,7 @@ onMounted(async () => {
 						:title="product.title"
 						:price="product.price.toString()"
 						:description="product.description"
+						:id="product._id"
 					/>
 				</div>
 				<div

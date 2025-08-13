@@ -1,7 +1,19 @@
 <script>
 import { useRouter } from 'vue-router'
+import OrderCard from '../components/OrderCard.vue'
+import CardModal from '../components/OrderModal.vue'
+import AddressForm from '../components/addressForm.vue'
+import AddressCard from '../components/AddressCard.vue'
+
+
 
 export default {
+  components: {
+    AddressForm,
+    AddressCard,
+    OrderCard,
+    CardModal
+  },
   data() {
     return {
       edit: false,
@@ -87,13 +99,7 @@ export default {
           zipCode: '21577',
           isPrimary: false
         }
-      ],
-      newAddress: {
-        title: '',
-        street: '',
-        city: '',
-        zipCode: ''
-      }
+      ]
     }
   },
   methods: {
@@ -108,6 +114,7 @@ export default {
         return 'Edit';
     },
 
+    // Order methods - now simplified since logic is in OrderCard and CardModal components
     viewOrderDetails(order) {
       this.selectedOrder = order;
       this.showOrderModal = true;
@@ -118,36 +125,25 @@ export default {
       this.selectedOrder = null;
     },
 
-    // Address methods
+    // Address methods - now simplified since logic is in AddressForm and AddressCard components
     showAddAddressForm() {
       this.showAddressForm = true;
       this.editingAddress = null;
-      this.resetNewAddress();
     },
 
     hideAddressForm() {
       this.showAddressForm = false;
       this.editingAddress = null;
-      this.resetNewAddress();
     },
 
-    resetNewAddress() {
-      this.newAddress = {
-        title: '',
-        street: '',
-        city: '',
-        zipCode: ''
-      };
-    },
-
-    saveAddress() {
+    saveAddress(addressData) {
       if (this.editingAddress) {
         // Update existing address
         const index = this.addresses.findIndex(addr => addr.id === this.editingAddress.id);
         if (index !== -1) {
           this.addresses[index] = {
             ...this.editingAddress,
-            ...this.newAddress
+            ...addressData
           };
         }
       } else {
@@ -155,7 +151,7 @@ export default {
         const newId = Math.max(...this.addresses.map(a => a.id)) + 1;
         this.addresses.push({
           id: newId,
-          ...this.newAddress,
+          ...addressData,
           isPrimary: false
         });
       }
@@ -164,12 +160,6 @@ export default {
 
     editAddress(address) {
       this.editingAddress = address;
-      this.newAddress = {
-        title: address.title,
-        street: address.street,
-        city: address.city,
-        zipCode: address.zipCode
-      };
       this.showAddressForm = true;
     },
 
@@ -181,15 +171,6 @@ export default {
       this.addresses.forEach(addr => {
         addr.isPrimary = addr.id === addressId;
       });
-    },
-
-    getStatusClass(status) {
-      switch(status) {
-        case 'Delivered': return 'text-success';
-        case 'Processing': return 'text-warning';
-        case 'Cancelled': return 'text-danger';
-        default: return 'text-muted';
-      }
     },
 
     // Notification methods
@@ -229,7 +210,6 @@ export default {
                 <div class="pt-5 pt-lg-0 mx-4 mx-lg-0 signout-btn-container d-flex flex-column justify-content-center align-items-center">
                   <div style="width: 90%;">
                       <router-link to="/" class="btn btn-white bg-white border w-100 d-flex align-items-center justify-content-center gap-2 mb-4 fw-medium text-primary fs-5 rounded-2">Sign out</router-link>
-
                   </div>
                 </div>
             </div>
@@ -399,96 +379,34 @@ export default {
                     </div>
                 </div>
 
-                <!-- Orders -->
+                <!-- Orders Tab - Now using OrderCard and CardModal components -->
                 <div class="tab-pane fade " id="order-tab" role="tabpanel">
                     <h3 class="fs-24 fw-bold text-primary mb-4 mt-5">My Orders</h3>
                     <div class="container mt-4 d-flex justify-content-center" >
                         
                         <div class="d-flex flex-column align-items-center gap-3 w-100 ">
                             
-                            <!-- Order items -->
-                            <div v-for="(order, index) in orders" :key="order.id" class="card mb-4 shadow-sm rounded w-100 border-none shadow-lg btnscale">
-                                <div class="card-body">
-                                    <div class="row g-4 align-items-center">
-
-                                        <!-- Carousel -->
-                                        <div class="col-12 col-md-5 ms-md-5">
-                                            <div :id="`item${index + 1}`" class="carousel slide">
-                                                <div class="carousel-inner rounded overflow-hidden">
-                                                    <div v-for="(image, imgIndex) in order.images" :key="imgIndex" 
-                                                         :class="['carousel-item', { active: imgIndex === 0 }]">
-                                                        <img :src="image" class="d-block w-100 order-carousel-img" alt="item photo">
-                                                    </div>
-                                                </div>
-
-                                                <button class="carousel-control-prev" type="button" :data-bs-target="`#item${index + 1}`" data-bs-slide="prev">
-                                                    <span class="carousel-control-prev-icon black-arrow"></span>
-                                                </button>
-                                                <button class="carousel-control-next" type="button" :data-bs-target="`#item${index + 1}`" data-bs-slide="next">
-                                                    <span class="carousel-control-next-icon black-arrow"></span>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <!-- Order Info -->
-                                        <div class="col-md-5 ms-2">
-                                            <div class="ps-md-5 d-flex justify-content-center align-items-center">
-                                                <div class="d-block">
-                                                    <h5 class="card-title text-primary fs-3">Order #{{ order.id }}</h5>
-                                                    <p class="fs-5"><strong>Status:</strong> <span :class="getStatusClass(order.status)">{{ order.status }}</span></p>
-                                                    <p class="fs-5"><strong>Date:</strong> {{ order.date }}</p>
-                                                    <button class="btn bg-primary text-white mt-2 fs-4" @click="viewOrderDetails(order)">View Details</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- Order items - Now using OrderCard component -->
+                            <OrderCard
+                                v-for="(order, index) in orders" 
+                                :key="order.id"
+                                :order="order"
+                                :index="index"
+                                @view-details="viewOrderDetails"
+                            />
                         </div>
                     </div>
 
-                    <!-- Order Details Modal -->
-                    <div v-if="showOrderModal" class="modal-overlay "  @click="closeOrderModal">
-                        <div class="modal-content-custom" @click.stop>
-                            <div class="modal-header-custom">
-                                <h5 class="fs-24">Order Details #{{ selectedOrder?.id }}</h5>
-                                <button class="btn-close-custom" @click="closeOrderModal">&times;</button>
-                            </div>
-                            <div class="modal-body-custom">
-                                <p class="fs-5 mb-2"><strong>Status:</strong> <span :class="getStatusClass(selectedOrder?.status)">{{ selectedOrder?.status }}</span></p>
-                                <p class="fs-5 mb-2"><strong>Date:</strong> {{ selectedOrder?.date }}</p>
-                                <p class="fs-5 mb-3"><strong>Total:</strong> {{ selectedOrder?.total }}</p>
-                                
-                                <!-- Products Table -->
-                                <div class="mb-3">
-                                    <p class="fs-5 mb-3"><strong>Products:</strong></p>
-                                    <div class="products-list">
-                                        <div v-for="(product, index) in selectedOrder?.products" 
-                                             :key="index" 
-                                             class="product-row">
-                                            <img :src="product.image" 
-                                                 class="product-img" 
-                                                 alt="Product image">
-                                            <div class="product-details">
-                                                <span class="product-name fs-5">{{ product.name }}</span>
-                                                <div class="price-details">
-                                                    <span class="product-unit-price fs-6">{{ product.price }} × {{ product.quantity }}</span>
-                                                    <span class="product-subtotal fs-5">{{ product.subtotal }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer-custom">
-                                <button class="btn btn-secondary fs-6" @click="closeOrderModal">Close</button>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Order Details Modal - Now using CardModal component -->
+                    <CardModal
+                        :visible="showOrderModal"
+                        :order="selectedOrder"
+                        @close="closeOrderModal"
+                    />
                 </div>
                 
 
-                <!--  Addresses -->
+                <!--  Addresses Tab - Now using AddressForm and AddressCard components -->
                 <div class="tab-pane fade" id="address-tab" role="tabpanel">
                       <div class="container mt-4">
                             <div class="d-flex justify-content-between w-100 py-3 mb-4">
@@ -496,57 +414,27 @@ export default {
                                 <button class="btn bg-primary text-white h-50 fs-6" @click="showAddAddressForm">Add New Address</button>
                             </div>
 
-                            <!-- Address Form -->
-                            <div v-if="showAddressForm" class="card mb-4 w-75">
-                                <div class="card-body">
-                                    <h5 class="card-title fs-4 text-primary">{{ editingAddress ? 'Edit Address' : 'Add New Address' }}</h5>
-                                    <form @submit.prevent="saveAddress">
-                                        <div class="mb-3">
-                                            <label class="form-label fs-5">Address Title</label>
-                                            <input type="text" class="form-control fs-6" v-model="newAddress.title" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label fs-5">Street Address</label>
-                                            <input type="text" class="form-control fs-6" v-model="newAddress.street" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label fs-5">City</label>
-                                            <input type="text" class="form-control fs-6" v-model="newAddress.city" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label fs-5">Zip Code</label>
-                                            <input type="text" class="form-control fs-6" v-model="newAddress.zipCode" required>
-                                        </div>
-                                        <div class="d-flex gap-2">
-                                            <button type="submit" class="btn bg-success text-white fs-6">Save Address</button>
-                                            <button type="button" class="btn btn-secondary fs-6" @click="hideAddressForm">Cancel</button>
-                                        </div>
-                                    </form>
-                                </div>
+                            <!-- Address Form - Now using AddressForm component -->
+                            <AddressForm
+                                :visible="showAddressForm"
+                                :editing-address="editingAddress"
+                                @save="saveAddress"
+                                @cancel="hideAddressForm"
+                            />
+
+                            <div class="row g-3">
+                            <div 
+                                v-for="address in addresses" 
+                                :key="address.id"
+                                class="col-12 col-sm-6 col-lg-4"
+                            >
+                                <AddressCard
+                                :address="address"
+                                @edit="editAddress"
+                                @delete="deleteAddress"
+                                @set-primary="setPrimary"
+                                />
                             </div>
-
-                            <div class="d-flex flex-wrap gap-2">
-                                <!-- Address items -->
-                                <div v-for="address in addresses" :key="address.id" class="card mb-3 shadow-sm rounded ">
-                                    <div class="card-body d-flex flex-column justify-content-between h-25">
-                                        <div>
-                                            <h5 class="card-title fs-4 text-primary">
-                                                {{ address.title }} 
-                                                <small v-if="address.isPrimary" class="text-success fs-6">(primary)</small>
-                                            </h5>
-
-                                            <p class="card-text text-muted mb-1 fs-6">{{ address.street }}</p>
-                                            <p class="card-text text-muted mb-1 fs-6">{{ address.city }}</p>
-                                            <p class="card-text text-muted mb-3 fs-6">Zip Code: {{ address.zipCode }}</p>
-                                        </div>
-
-                                        <div class="d-flex flex-wrap gap-1">
-                                            <button class="btn btn-sm btn-outline-secondary fs-7" @click="editAddress(address)">Edit</button>
-                                            <button v-if="!address.isPrimary" class="btn btn-sm btn-outline-primary fs-7" @click="setPrimary(address.id)">Set Primary</button>
-                                            <button v-if="!address.isPrimary" class="btn btn-sm bg-danger text-white fs-7" @click="deleteAddress(address.id)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                 </div>
@@ -572,139 +460,7 @@ export default {
     width: 120px;
     height: 120px;
     object-fit: cover;
-    z-index: -1;
-}
-
-.order-carousel-img {
- 
-    height: 200px;
-    object-fit: cover;
-}
-
-.carousel-control-prev-icon.black-arrow,
-.carousel-control-next-icon.black-arrow {
-    filter: invert(1);
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-    width: 8%;
-    color: #000000fd;
-    
-}
-
-/* Modal styles */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.modal-content-custom {
-    background: white;
-    border-radius: 8px;
-    max-width: 500px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-}
-
-.modal-header-custom {
-    padding: 1rem;
-    border-bottom: 1px solid #dee2e6;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.modal-body-custom {
-    padding: 1rem;
-}
-
-.modal-footer-custom {
-    padding: 1rem;
-    border-top: 1px solid #dee2e6;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.btn-close-custom {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.btn-close-custom:hover {
-    background-color: #f8f9fa;
-    border-radius: 50%;
-}
-
-.products-list {
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.product-row {
-    display: flex;
-    align-items: center;
-    padding: 12px;
-    border-bottom: 1px solid #dee2e6;
-}
-
-.product-row:last-child {
-    border-bottom: none;
-}
-
-.product-img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-right: 15px;
-}
-
-.product-details {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.product-name {
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 4px;
-}
-
-.price-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.product-unit-price {
-    color: #666;
-    font-size: 0.9em;
-}
-
-.product-subtotal {
-    color: #3A3845;
-    font-weight: 600;
-    font-size: 1em;
+    z-index: -1; 
 }
 
 .signout-btn-container {

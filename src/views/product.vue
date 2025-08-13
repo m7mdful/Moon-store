@@ -167,7 +167,7 @@ const similarItems = computed(() =>
         </div>
         <div class="d-flex gap-2 fs-5">
           <p>${{ product.price }}</p>
-          <p class="text-decoration-line-through">$50</p>
+          <!-- <p class="text-decoration-line-through">$50</p> -->
         </div>
 
         <div class="d-flex gap-2 fs-6 mt-5 fw-semibold">

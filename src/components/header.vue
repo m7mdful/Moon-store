@@ -6,9 +6,9 @@
     <!-- The main div -->
     <div class="d-flex justify-content-between px-3 justify-content-lg-around">
       <!-- Button dropdown for mobile -->
-      <div class="d-lg-none">
+      <div class="d-lg-none d-flex align-items-center">
         <button
-          class="d-lg-none"
+          class="d-lg-none  "
           data-bs-toggle="dropdown"
           aria-expanded="false"
           style="background: none; border: none"
@@ -55,7 +55,7 @@
         </router-link>
       </div>
       <!-- Mobile cart icon -->
-      <div class="d-lg-none mt-2">
+      <div class="d-lg-none mt-2 d-flex align-items-center">
         <router-link to="/cart" href="" class="counter-icon">
           <img src="../assets/Vector.svg" alt="" />
           <span>2</span>

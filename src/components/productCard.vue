@@ -72,8 +72,9 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
-import { addToCart } from '../dData.js'
+import { addToCart, getProductById } from '../dData.js'
 import { useRouter } from 'vue-router'
+
 
 const props = defineProps({
   imgSrc: String,
@@ -89,6 +90,14 @@ const addItemToCart = async (id) => {
   
   } catch (error) {
     console.error('Error adding to cart:', error);
+  }
+}
+
+const getProduct = async (id) => {
+  try {
+    await getProductById(id);
+  } catch (error) {
+    console.error('Error fetching product:', error);
   }
 }
 
@@ -123,8 +132,13 @@ const cardWidth = computed(() => (isMobile.value ? '170px' : '255px'))
 const cardHeight = computed(() => (isMobile.value ? '400px' : '500px'))
 const imageHeight = computed(() => (isMobile.value ? '240px' : '321px'))
 
-const goToProduct = () => {
-  router.push('/product')
+const goToProduct = async () => {
+  if (props.id) {
+    router.push(`/product/${props.id}`)
+  } else {
+    console.warn("No product ID available")
+    router.push('/product')
+  }
 }
 
 

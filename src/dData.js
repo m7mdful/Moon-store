@@ -4,6 +4,7 @@ export const products = reactive([]);
 export const bestseller = reactive([]);
 export const newProducts = reactive([]);
 export const user = reactive({})
+export const product = reactive({})
 
 
 
@@ -120,6 +121,17 @@ export async function getProducts(query="", object) {
         object.push(...response.data.products); // Add new products
     } catch (error) {
         console.error("Error fetching products:", error);
+    }
+}
+
+//get product by id
+export async function getProductById(id) {
+    try {
+        const response = await api.get(`/product/${id}`);
+        Object.assign(product, response.data);
+        console.log("Product fetched successfully:", response.data);
+    } catch (error) {
+        console.error("Error fetching product:", error);
     }
 }
 

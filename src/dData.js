@@ -91,6 +91,17 @@ export async function moveToCart(productId) {
         console.error("Error moving item to cart:", error);
     }
 }
+//add to whishlist from product page
+export async function addToWishlist(productId) {
+    try {
+        const response = await api.put("/user/add-to-whishlist", { productId });
+        Object.assign(user, response.data);
+        console.log("Item added to wishlist successfully:", response.data);
+    } catch (error) {
+        console.error("Error adding item to wishlist:", error);
+    }
+}
+
 //add to cart
 export async function addToCart(productId, quantity) {
     try {
